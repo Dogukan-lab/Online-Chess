@@ -5,5 +5,8 @@ public class Main {
         System.out.println("Iets");
         System.out.println("Anders");
         System.out.println("Hello World!");
+
+        UIstartScreen.launch(UIstartScreen.class);
+
     }
 }
