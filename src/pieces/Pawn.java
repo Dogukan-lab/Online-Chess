@@ -18,4 +18,9 @@ public class Pawn extends Piece {
     public void moveTo(int x, int y) {
 
     }
+
+    @Override
+    public void draw() {
+
+    }
 }
