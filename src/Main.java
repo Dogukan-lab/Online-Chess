@@ -1,12 +1,12 @@
+import ui.UIManager;
+
 public class Main {
 
     public static void main(String[] args) {
 
-        System.out.println("Iets");
-        System.out.println("Anders");
-        System.out.println("Hello World!");
 
-        UIstartScreen.launch(UIstartScreen.class);
+
+        UIManager.launch(UIManager.class);
 
     }
 }

@@ -1,18 +1,28 @@
+package ui;
+
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import logic.ChessBoard;
 import org.jfree.fx.FXGraphics2D;
 import org.jfree.fx.Resizable;
 import org.jfree.fx.ResizableCanvas;
 
+import javax.xml.soap.Node;
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 
-public class UIstartScreen extends Application {
+public class UIManager extends Application {
 
 
+    public static boolean toMap = false;
     private ResizableCanvas canvas;
+    private ChessBoard map;
+    private UIStartScreen startScreen;
 
 
     @Override
@@ -23,12 +33,15 @@ public class UIstartScreen extends Application {
         mainPane.setCenter(this.canvas);
         FXGraphics2D g2d = new FXGraphics2D(this.canvas.getGraphicsContext2D());
 
+        this.startScreen = new UIStartScreen(canvas);
+
+
         new AnimationTimer() {
             long last = -1;
 
             @Override
             public void handle(long now) {
-                if(last == -1){
+                if (last == -1) {
                     last = now;
                 }
                 update((now - last) / 1000000000.0);
@@ -49,21 +62,37 @@ public class UIstartScreen extends Application {
     @Override
     public void init() throws Exception {
 
+        this.map = new ChessBoard("resources/ChessBoard.json", canvas);
 
     }
-
 
 
     private void update(double deltaTime) {
 
+        if(!toMap){
+            this.startScreen.update(deltaTime);
+        }
     }
 
 
+    public void draw(FXGraphics2D graphics) {
+        graphics.setTransform(new AffineTransform());
+        graphics.setBackground(Color.white);
+        graphics.clearRect(0, 0, (int) canvas.getWidth(), (int) canvas.getHeight());
 
-    public void draw(Graphics2D graphics){
+        if (!toMap) {
+            this.startScreen.draw(graphics);
+        } else {
+             this.map.draw(graphics);
+
+        }
 
     }
 
+
+    private void redraw(FXGraphics2D graphics) {
+        draw(graphics);
+    }
 
 
 }
