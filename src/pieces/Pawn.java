@@ -1,12 +1,15 @@
 package pieces;
 
 import logic.TileBoard;
+import org.jfree.fx.FXGraphics2D;
+
+import java.awt.image.BufferedImage;
 
 public class Pawn extends Piece {
 
 
-    public Pawn(int x, int y, boolean isWhite, String file_path, TileBoard tileBoard) {
-        super(x, y, isWhite, file_path, tileBoard);
+    public Pawn(int x, int y, boolean isWhite, BufferedImage image, TileBoard tileBoard) {
+        super(x, y, isWhite, image, tileBoard);
     }
 
     @Override
@@ -19,8 +22,4 @@ public class Pawn extends Piece {
 
     }
 
-    @Override
-    public void draw() {
-
-    }
 }

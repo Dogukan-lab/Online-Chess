@@ -87,11 +87,6 @@ public class ChessBoard {
             }
         }
 
-        for(int yC = 0; yC < 8; yC++){
-            for(int xC = 0; xC < 8; xC++){
-                System.out.println(tiles[xC][yC].toString());
-            }
-        }
 
 
     }

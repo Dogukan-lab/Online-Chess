@@ -25,14 +25,27 @@ public class Tile {
         return nameSpace;
     }
 
+    public void setPiece(Piece piece) {
+        this.piece = piece;
+    }
+
     public Piece getPiece() {
         return piece;
     }
 
     @Override
     public String toString() {
-        return "Tile{" +
-                "nameSpace='" + nameSpace + '\'' +
-                '}';
+        if (piece == null) {
+            return "Tile{" +
+                    "nameSpace=' " + nameSpace + "  " + '\'' +
+                    "Piece=' " + " " + "  " + '\'' +
+                    '}';
+
+        } else {
+            return "Tile{" +
+                    "nameSpace=' " + nameSpace + "  " + '\'' +
+                    "Piece=' " + piece.toString() + "  " + '\'' +
+                    '}';
+        }
     }
 }

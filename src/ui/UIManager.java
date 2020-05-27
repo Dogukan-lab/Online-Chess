@@ -8,11 +8,13 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import logic.ChessBoard;
+import logic.SpriteSheetReader;
 import logic.Tile;
 import logic.TileBoard;
 import org.jfree.fx.FXGraphics2D;
 import org.jfree.fx.Resizable;
 import org.jfree.fx.ResizableCanvas;
+import pieces.Piece;
 
 import javax.xml.soap.Node;
 import java.awt.*;
@@ -25,6 +27,7 @@ public class UIManager extends Application {
     private ResizableCanvas canvas;
     private ChessBoard map;
     private UIStartScreen startScreen;
+    private TileBoard board;
 
 
     @Override
@@ -68,7 +71,9 @@ public class UIManager extends Application {
     public void init() throws Exception {
 
         this.map = new ChessBoard("resources/ChessBoard.json", canvas);
-        TileBoard board = new TileBoard(map.getTiles());
+        SpriteSheetReader spriteReader = new SpriteSheetReader("resources/sprite-sheet-pieces.png");
+        this.board = new TileBoard(map.getTiles(), spriteReader.getImages());
+
 
     }
 
@@ -90,7 +95,12 @@ public class UIManager extends Application {
             this.startScreen.draw(graphics);
         } else {
              this.map.draw(graphics);
-
+             for(Piece piece : this.board.getBlackPieces()){
+                 piece.draw(graphics);
+             }
+            for (Piece piece : this.board.getWhitePieces()) {
+                piece.draw(graphics);
+            }
 
         }
 

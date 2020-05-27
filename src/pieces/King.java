@@ -2,11 +2,13 @@ package pieces;
 
 import logic.TileBoard;
 
+import java.awt.image.BufferedImage;
+
 public class King extends Piece {
 
 
-    public King(int x, int y, boolean isWhite, String file_path, TileBoard tileBoard) {
-        super(x, y, isWhite, file_path, tileBoard);
+    public King(int x, int y, boolean isWhite, BufferedImage image, TileBoard tileBoard) {
+        super(x, y, isWhite, image, tileBoard);
     }
 
     @Override
@@ -19,8 +21,5 @@ public class King extends Piece {
 
     }
 
-    @Override
-    public void draw() {
 
-    }
 }
