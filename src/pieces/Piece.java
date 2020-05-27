@@ -12,12 +12,14 @@ public abstract class Piece {
     protected int x;
     protected int y;
     protected boolean isWhite;
+    protected String file_path;
     protected TileBoard board;
 
-    public Piece(int x, int y, boolean isWhite, TileBoard tileBoard) {
+    public Piece(int x, int y, boolean isWhite, String file_path,TileBoard tileBoard) {
         this.x = x;
         this.y = y;
         this.isWhite = isWhite;
+        this.file_path = file_path;
         this.board = tileBoard;
     }
 

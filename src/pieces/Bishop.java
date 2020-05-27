@@ -5,8 +5,8 @@ import logic.TileBoard;
 public class Bishop extends Piece {
 
 
-    public Bishop(int x, int y, boolean isWhite, TileBoard tileBoard) {
-        super(x, y, isWhite, tileBoard);
+    public Bishop(int x, int y, boolean isWhite, String file_path, TileBoard tileBoard) {
+        super(x, y, isWhite, file_path, tileBoard);
     }
 
     @Override
@@ -16,6 +16,11 @@ public class Bishop extends Piece {
 
     @Override
     public void moveTo(int x, int y) {
+
+    }
+
+    @Override
+    public void draw() {
 
     }
 }
