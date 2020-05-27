@@ -6,8 +6,8 @@ public class Knight extends Piece {
 
     private final static int[] CANDIDATE_MOVE_COORDINATES = {-17, -15, -10, -6, 6, 10, 15, 17};
 
-    public Knight(int x, int y, boolean isWhite, TileBoard tileBoard) {
-        super(x, y, isWhite, tileBoard);
+    public Knight(int x, int y, boolean isWhite, String file_path, TileBoard tileBoard) {
+        super(x, y, isWhite, file_path, tileBoard);
     }
 
     @Override

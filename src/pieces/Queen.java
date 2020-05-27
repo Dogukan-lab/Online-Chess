@@ -5,8 +5,8 @@ import logic.TileBoard;
 public class Queen extends Piece {
 
 
-    public Queen(int x, int y, boolean isWhite, TileBoard tileBoard) {
-        super(x, y, isWhite, tileBoard);
+    public Queen(int x, int y, boolean isWhite, String file_path, TileBoard tileBoard) {
+        super(x, y, isWhite, file_path, tileBoard);
     }
 
     @Override
