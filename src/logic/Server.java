@@ -23,18 +23,20 @@ public class Server {
             System.out.println("Waiting for clients...");
             Socket socket = this.serverSocket.accept();
 
-            DataInputStream inputStream = new DataInputStream(socket.getInputStream());
             DataOutputStream outputStream = new DataOutputStream(socket.getOutputStream());
+            DataInputStream inputStream = new DataInputStream(socket.getInputStream());
 
             System.out.println("Client has connected from: " + socket.getInetAddress().getHostName());
             while (this.isRunning) {
                 String read = inputStream.readUTF();
                 if (read.equals("quit")) {
+                    isRunning = false;
                     System.out.println("Client has disconnected from: " + socket.getInetAddress().getHostName());
                 }
+                System.out.println(read);
             }
+
             outputStream.close();
-            inputStream.close();
             socket.close();
             this.serverSocket.close();
         } catch (IOException e) {

@@ -37,17 +37,10 @@ public class Client {
 
             String input = scanner.nextLine();
 
-            while(this.isRunning){
-                if(input.equals("quit")){
-                    this.isRunning = false;
-                } else {
-                    input = scanner.nextLine();
-                    outputStream.writeUTF(input);
-                    System.out.println(input);
-                }
-
-            }
-
+            input = scanner.nextLine();
+            outputStream.writeUTF(input);
+            outputStream.flush();
+            System.out.println(input);
 
 
             inputStream.close();
