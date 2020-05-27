@@ -1,10 +1,9 @@
 package pieces;
 
-import logic.Tile;
-import logic.TileBoard;
+import logic.board.Move;
+import logic.board.TileBoard;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collection;
 
 public abstract class Piece {
 
@@ -15,7 +14,7 @@ public abstract class Piece {
     protected String file_path;
     protected TileBoard board;
 
-    public Piece(int x, int y, boolean isWhite, String file_path,TileBoard tileBoard) {
+    public Piece(int x, int y, boolean isWhite, String file_path ,TileBoard tileBoard) {
         this.x = x;
         this.y = y;
         this.isWhite = isWhite;
@@ -23,6 +22,14 @@ public abstract class Piece {
         this.board = tileBoard;
     }
 
+    public void setX_Y(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+
+
+    public abstract Collection<Move> calculateMoves();
 
     public abstract boolean canMove(int x, int y);
 

@@ -2,19 +2,15 @@ package ui;
 
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import logic.ChessBoard;
-import logic.Tile;
-import logic.TileBoard;
+import logic.board.ChessBoard;
+import logic.board.TileBoard;
 import org.jfree.fx.FXGraphics2D;
-import org.jfree.fx.Resizable;
 import org.jfree.fx.ResizableCanvas;
+import pieces.Knight;
 
-import javax.xml.soap.Node;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 
@@ -69,7 +65,8 @@ public class UIManager extends Application {
 
         this.map = new ChessBoard("resources/ChessBoard.json", canvas);
         TileBoard board = new TileBoard(map.getTiles());
-
+        Knight knight = new Knight(0,0, true, "", board);
+        knight.printMoves(knight.calculateMoves());
     }
 
 
@@ -78,6 +75,7 @@ public class UIManager extends Application {
         if(!toMap){
             this.startScreen.update(deltaTime);
         }
+
     }
 
 
