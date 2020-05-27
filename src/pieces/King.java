@@ -1,9 +1,21 @@
 package pieces;
 
-import java.util.ArrayList;
+import logic.TileBoard;
 
 public class King extends Piece {
-    public King(String colour, int id, ArrayList<String> moves) {
-        super(colour, id, moves);
+
+
+    public King(int x, int y, boolean isWhite, TileBoard tileBoard) {
+        super(x, y, isWhite, tileBoard);
+    }
+
+    @Override
+    public boolean canMove(int x, int y) {
+        return false;
+    }
+
+    @Override
+    public void moveTo(int x, int y) {
+
     }
 }

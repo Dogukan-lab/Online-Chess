@@ -8,6 +8,8 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import logic.ChessBoard;
+import logic.Tile;
+import logic.TileBoard;
 import org.jfree.fx.FXGraphics2D;
 import org.jfree.fx.Resizable;
 import org.jfree.fx.ResizableCanvas;
@@ -32,6 +34,9 @@ public class UIManager extends Application {
         this.canvas = new ResizableCanvas(g -> draw(g), mainPane);
         mainPane.setCenter(this.canvas);
         FXGraphics2D g2d = new FXGraphics2D(this.canvas.getGraphicsContext2D());
+
+        primaryStage.setMaximized(true);
+        primaryStage.setResizable(false);
 
         this.startScreen = new UIStartScreen(canvas);
 
@@ -63,6 +68,7 @@ public class UIManager extends Application {
     public void init() throws Exception {
 
         this.map = new ChessBoard("resources/ChessBoard.json", canvas);
+        TileBoard board = new TileBoard(map.getTiles());
 
     }
 
@@ -84,6 +90,7 @@ public class UIManager extends Application {
             this.startScreen.draw(graphics);
         } else {
              this.map.draw(graphics);
+
 
         }
 

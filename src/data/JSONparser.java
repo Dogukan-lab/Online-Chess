@@ -109,4 +109,11 @@ public class JSONparser {
     }
 
 
+    public JsonArray getobjectLayerWhitePlaces(){
+        JsonObject whitePlaces = getWhiteSidePlaces();
+
+        return whitePlaces.getJsonArray("objects");
+    }
+
+
 }

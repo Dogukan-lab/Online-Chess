@@ -1,7 +1,7 @@
 package data;
 
 public class Data {
-    private static Data instance;
+     private static Data instance;
 
     synchronized public static Data getInstance() {
         if (instance == null) {
