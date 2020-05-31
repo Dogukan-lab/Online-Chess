@@ -7,12 +7,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import java.awt.image.BufferedImage;
+
 public class Knight extends Piece {
 
     private final static int[] CANDIDATE_MOVE_COORDINATES = {-17, -15, -10, -6, 6, 10, 15, 17};
 
-    public Knight(int x, int y, boolean isWhite, String file_path, TileBoard tileBoard) {
-        super(x, y, isWhite, file_path, tileBoard);
+    public Knight(int x, int y, boolean isWhite, BufferedImage image, TileBoard tileBoard) {
+        super(x, y, isWhite, image, tileBoard);
     }
 
 
@@ -62,8 +64,5 @@ public class Knight extends Piece {
 
     }
 
-    @Override
-    public void draw() {
 
-    }
 }
