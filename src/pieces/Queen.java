@@ -1,9 +1,8 @@
 package pieces;
 
-import logic.TileBoard;
+import logic.board.TileBoard;
 
 import java.awt.image.BufferedImage;
-import java.nio.Buffer;
 
 public class Queen extends Piece {
 

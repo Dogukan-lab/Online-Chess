@@ -1,10 +1,8 @@
-package logic;
+package logic.board;
 
 import pieces.*;
 
 import java.awt.image.BufferedImage;
-import java.lang.reflect.Array;
-import java.nio.Buffer;
 import java.util.ArrayList;
 
 public class TileBoard {
@@ -32,8 +30,8 @@ public class TileBoard {
         Piece knight1Black = new Knight(1,0, false, this.images.get(9), this);
         tiles[1][0].setPiece(knight1Black);
 
-        Piece bischop1Black = new Bishop(2, 0, false, this.images.get(8), this);
-        tiles[2][0].setPiece(bischop1Black);
+        Piece bishop1Black = new Bishop(2, 0, false, this.images.get(8), this);
+        tiles[2][0].setPiece(bishop1Black);
 
         Piece kingBlack = new King(3, 0, false, this.images.get(6), this);
         tiles[3][0].setPiece(kingBlack);
@@ -79,7 +77,7 @@ public class TileBoard {
         this.blackPieces.add(rook2Black);
         this.blackPieces.add(knight1Black);
         this.blackPieces.add(knight2Black);
-        this.blackPieces.add(bischop1Black);
+        this.blackPieces.add(bishop1Black);
         this.blackPieces.add(bischop2Black);
         this.blackPieces.add(kingBlack);
         this.blackPieces.add(queenBlack);
@@ -163,25 +161,42 @@ public class TileBoard {
         this.whitePieces.add(pawnW8);
 
 
-        for(int yC = 0; yC < 8; yC++){
-            for(int xC = 0; xC < 8; xC++){
-                System.out.println(tiles[xC][yC].toString());
-            }
-        }
+//        for(int yC = 0; yC < 8; yC++){
+//            for(int xC = 0; xC < 8; xC++){
+//                System.out.println(tiles[xC][yC].toString());
+//            }
+//        }
     }
 
 
 
-    public Tile getPieceOnTile(int x, int y){
-        Tile tile = this.tiles[x][y];
-        return tile;
+    public Piece getPiece(int x, int y) {
+        for (Piece p : this.whitePieces)
+        {
+            if (p.getX() == x && p.getY() == y)
+            {
+                return p;
+            }
+        }
+        for (Piece p : this.blackPieces)
+        {
+            if (p.getX() == x && p.getY() == y)
+            {
+                return p;
+            }
+        }
+        return null;
+    }
+
+    public Tile[][] getTiles() {
+        return this.tiles;
     }
 
     public ArrayList<Piece> getBlackPieces() {
-        return blackPieces;
+        return this.blackPieces;
     }
 
     public ArrayList<Piece> getWhitePieces() {
-        return whitePieces;
+        return this.whitePieces;
     }
 }

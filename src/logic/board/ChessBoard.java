@@ -1,6 +1,7 @@
-package logic;
+package logic.board;
 
 import data.JSONparser;
+import logic.board.Tile;
 import org.jfree.fx.FXGraphics2D;
 import org.jfree.fx.ResizableCanvas;
 

@@ -1,7 +1,6 @@
 package pieces;
 
-import logic.TileBoard;
-import org.jfree.fx.FXGraphics2D;
+import logic.board.TileBoard;
 
 import java.awt.image.BufferedImage;
 
@@ -14,11 +13,15 @@ public class Pawn extends Piece {
 
     @Override
     public boolean canMove(int x, int y) {
-        return false;
+        return true;
     }
 
     @Override
     public void moveTo(int x, int y) {
+        if(canMove(x,y)){
+            super.setX(x);
+            super.setY(y);
+        }
 
     }
 

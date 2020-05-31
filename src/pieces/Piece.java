@@ -1,14 +1,10 @@
 package pieces;
 
-import logic.Tile;
-import logic.TileBoard;
+import logic.board.TileBoard;
 import org.jfree.fx.FXGraphics2D;
 
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
-import java.nio.Buffer;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 public abstract class Piece {
 
@@ -26,7 +22,6 @@ public abstract class Piece {
         this.image = image;
         this.board = tileBoard;
     }
-
 
     public abstract boolean canMove(int x, int y);
 
@@ -46,6 +41,26 @@ public abstract class Piece {
     }
     public boolean isBlack(){
         return !this.isWhite;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public BufferedImage getImage() {
+        return image;
     }
 
     @Override
