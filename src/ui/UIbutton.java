@@ -52,7 +52,8 @@ public class UIbutton {
         graphics.fill(this.rectangle);
 
         graphics.setColor(Color.white);
-        graphics.drawString(this.titleName, (int)(this.rectangle.getMinX() + (this.rectangle.getMaxX() - this.rectangle.getMinX())/3), (int)(this.rectangle.getMinY() + (this.rectangle.getMaxY() - this.rectangle.getMinY())/2));
+        graphics.drawString(this.titleName, (int)(this.rectangle.getMinX() + (this.rectangle.getMaxX() - this.rectangle.getMinX())/3),
+                            (int)(this.rectangle.getMinY() + (this.rectangle.getMaxY() - this.rectangle.getMinY())/2));
 
     }
 
