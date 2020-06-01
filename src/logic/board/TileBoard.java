@@ -49,8 +49,8 @@ public class TileBoard {
         tiles[7][0].setPiece(rook2Black);
 
 
-        Piece pawn1 = new Pawn(0,1, false, this.images.get(11), this);
-        tiles[0][1].setPiece(pawn1);
+//        Piece pawn1 = new Pawn(0,1, false, this.images.get(11), this);
+//        tiles[0][1].setPiece(pawn1);
 
         Piece pawn2 = new Pawn(1,1, false, this.images.get(11), this);
         tiles[1][1].setPiece(pawn2);
@@ -81,7 +81,7 @@ public class TileBoard {
         this.blackPieces.add(bischop2Black);
         this.blackPieces.add(kingBlack);
         this.blackPieces.add(queenBlack);
-        this.blackPieces.add(pawn1);
+//        this.blackPieces.add(pawn1);
         this.blackPieces.add(pawn2);
         this.blackPieces.add(pawn3);
         this.blackPieces.add(pawn4);

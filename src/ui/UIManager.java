@@ -8,6 +8,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import logic.board.ChessBoard;
 import logic.SpriteSheetReader;
+import logic.board.Tile;
 import logic.board.TileBoard;
 import org.jfree.fx.FXGraphics2D;
 import org.jfree.fx.ResizableCanvas;
@@ -21,6 +22,7 @@ public class UIManager extends Application {
 
 
     public static boolean toMap = false;
+    private boolean switchedToGameSettings = false;
     private boolean switchedBlock;
     private ResizableCanvas canvas;
     private double offsetx;
@@ -42,12 +44,7 @@ public class UIManager extends Application {
         primaryStage.setResizable(false);
 
         this.startScreen = new UIStartScreen(canvas);
-        if(toMap){
-            canvas.setOnMouseClicked(this::mousePressed);
-            canvas.setOnMouseReleased(this::mouseReleased);
-            canvas.setOnMouseReleased(this::mouseDragged);
 
-        }
 
         new AnimationTimer() {
             long last = -1;
@@ -89,6 +86,17 @@ public class UIManager extends Application {
         if (!toMap) {
             this.startScreen.update(deltaTime);
         }
+
+        if (!switchedToGameSettings) {
+            if(toMap){
+                canvas.setOnMousePressed(this::mousePressed);
+                canvas.setOnMouseReleased(this::mouseReleased);
+                canvas.setOnMouseDragged(this::mouseDragged);
+                switchedToGameSettings = true;
+            }
+        }
+
+
     }
 
 
@@ -116,26 +124,49 @@ public class UIManager extends Application {
 
     public void mousePressed(MouseEvent e) {
         switchedBlock = true;
-        for (Piece p : this.board.getWhitePieces()) {
-            if (e.getX() < p.getImage().getWidth() && e.getX() > p.getImage().getMinX() && e.getY() < p.getImage().getHeight() && e.getY() > p.getImage().getMinY()) {
-                piece = p;
+//        for (Piece p : this.board.getWhitePieces()) {
+//            if (e.getX() < p.getImage().getWidth() + p.getImage().getMinX() && e.getX() > p.getImage().getMinX() && e.getY() < p.getImage().getHeight() + p.getImage().getMinY() && e.getY() > p.getImage().getMinY()) {
+//                piece = p;
+//
+//                System.out.println("CLICKED");
+//                return;
+//            }
+//
+//        }
 
-                System.out.println("CLICKED");
-                return;
+        for (int y = 0; y < 8; y++) {
+            for (int x = 0; x < 8; x++) {
+                Tile t = this.board.getTiles()[x][y];
+                Piece p = this.board.getTiles()[x][y].getPiece();
+                System.out.println(t.toString());
+                if (p != null) {
+                    if (e.getX() > t.getRectangle().getMinX() && e.getX() < t.getRectangle().getMaxX() && e.getY() > t.getRectangle().getMinY() && e.getY() < t.getRectangle().getMaxY()) {
+                        piece = p;
+                        System.out.println("CLICKED ON A BLACK PIECE: " + piece.isBlack());
+                        return;
+                    }
+                }
             }
         }
+
     }
 
     public void mouseReleased(MouseEvent e) {
+
         piece = null;
         switchedBlock = false;
+
     }
 
     private void mouseDragged(MouseEvent e) {
+
+
+
         if (piece != null) {
 
             //only calculate the offset on grabbing a new block
             if (switchedBlock) {
+                System.out.println("IK KOM IN DE IF STATEMENT");
                 //calculate the offset of the mouse position relative to the block position
                 offsetx = e.getX() - piece.getX();
                 offsety = e.getY() - piece.getY();
@@ -143,10 +174,13 @@ public class UIManager extends Application {
             }
 
             //get the translate position
-            Point2D translatePos = new Point2D.Double((e.getX()) - offsetx, (e.getY() - offsety));
+             Point2D translatePos = new Point2D.Double((e.getX() - offsetx), (e.getY() - offsety));
+//            piece.setX((int)translatePos.getX()/320);
+//            piece.setY((int) translatePos.getY()/320);
 
             //move the block to the desired position
-            piece.moveTo((int) translatePos.getX(), (int) translatePos.getY());
+//            piece.moveTo((int) translatePos.getX()/320, (int) translatePos.getY()/320);
+            piece.moveTo((int) translatePos.getX()/320, (int) translatePos.getY()/320);
 
             //draw the canvas again
 //            draw(new FXGraphics2D(canvas.getGraphicsContext2D()));
