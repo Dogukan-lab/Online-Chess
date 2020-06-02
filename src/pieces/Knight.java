@@ -1,10 +1,6 @@
 package pieces;
 
-import logic.board.*;
-import logic.board.Move;
-
-import java.util.ArrayList;
-import java.util.List;
+import logic.experiment.TileBoard;
 
 import java.awt.image.BufferedImage;
 
@@ -41,9 +37,9 @@ public class Knight extends Piece {
 //    }
 
     private boolean inGrid(final int x, final int y) {
-        if (x < 0 && x > board.getTiles().length && y < 0 && y > board.getTiles().length)
-            return false;
-        else return true;
+//        if (x < 0 && x > board.getTiles().length && y < 0 && y > board.getTiles().length)
+//            return false;
+       return true;
     }
 
 

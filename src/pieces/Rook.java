@@ -1,7 +1,7 @@
 package pieces;
 
 import data.Direction;
-import logic.board.TileBoard;
+import logic.experiment.TileBoard;
 
 import java.awt.image.BufferedImage;
 

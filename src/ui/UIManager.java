@@ -3,35 +3,25 @@ package ui;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import logic.SpriteSheetReader;
-import logic.Tile;
-import logic.board.TileBoard;
 import org.jfree.fx.FXGraphics2D;
 import org.jfree.fx.ResizableCanvas;
-import pieces.Piece;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
-import java.awt.geom.Point2D;
 
 public class UIManager extends Application {
 
 
     public static boolean toMap = false;
     private boolean switchedToGameSettings = false;
-    private boolean switchedBlock;
+
     private ResizableCanvas canvas;
-    private double offsetx;
-    private double offsety;
-    private ChessBoard map;
     private UIStartScreen startScreen;
-    private TileBoard board;
+    private UIGameScreen gameScreen;
 
     private Stage stage;
-    private boolean selectedAPiece = false;
 
 
     @Override
@@ -44,10 +34,8 @@ public class UIManager extends Application {
         mainPane.setCenter(this.canvas);
         FXGraphics2D g2d = new FXGraphics2D(this.canvas.getGraphicsContext2D());
 
-//        primaryStage.setMaximized(true);
-//        primaryStage.setResizable(false);
-
         this.startScreen = new UIStartScreen(canvas);
+        this.gameScreen = new UIGameScreen(canvas);
 
 
         new AnimationTimer() {
@@ -76,12 +64,6 @@ public class UIManager extends Application {
     @Override
     public void init() throws Exception {
 
-        this.map = new ChessBoard("resources/ChessBoard.json", canvas);
-        SpriteSheetReader spriteReader = new SpriteSheetReader("resources/sprite-sheet-pieces.png");
-        this.board = new TileBoard(map.getTiles(), spriteReader.getImages());
-        this.switchedBlock = false;
-        this.offsetx = 0;
-        this.offsety = 0;
 
     }
 
@@ -90,24 +72,28 @@ public class UIManager extends Application {
         if (!toMap) {
             this.startScreen.update(deltaTime);
         }
-
-        if (!switchedToGameSettings) {
-            if(toMap){
-                canvas.setOnMousePressed(this::mousePressed);
-                canvas.setOnMouseReleased(this::mouseReleased);
-                canvas.setOnMouseDragged(this::mouseDragged);
-                stage.setX(200);
-                stage.setY(20);
-                stage.setWidth(map.getWidth() + 300);
-                stage.setHeight(map.getMapHeight());
-                stage.setResizable(false);
-//                canvas.setWidth(map.getWidth());
-//                canvas.setHeight(map.getMapHeight());
-                switchedToGameSettings = true;
-                System.out.println(canvas.getWidth());
-                System.out.println(canvas.getHeight());
-            }
+        else {
+            this.gameScreen.update(deltaTime);
         }
+
+//        if (!switchedToGameSettings) {
+//            if(toMap){
+////                canvas.setOnMousePressed(this::mousePressed);
+////                canvas.setOnMouseReleased(this::mouseReleased);
+////                canvas.setOnMouseDragged(this::mouseDragged);
+////                stage.setX(200);
+////                stage.setY(20);
+////                stage.setWidth(map.getWidth() + 300);
+////                stage.setHeight(map.getMapHeight());
+////                stage.setResizable(false);
+////                canvas.setWidth(map.getWidth());
+////                canvas.setHeight(map.getMapHeight());
+//                switchedToGameSettings = true;
+//                System.out.println(canvas.getWidth());
+//                System.out.println(canvas.getHeight());
+//            }
+//        }
+
 
 
     }
@@ -121,21 +107,14 @@ public class UIManager extends Application {
         if (!toMap) {
             this.startScreen.draw(graphics);
         } else {
-            this.map.draw(graphics);
-            for (Piece piece : this.board.getBlackPieces()) {
-                piece.draw(graphics);
-            }
-            for (Piece piece : this.board.getWhitePieces()) {
-                piece.draw(graphics);
-            }
-            graphics.setColor(Color.blue);
-            graphics.draw(this.board.getOutline());
-            graphics.setColor(Color.black);
-
+            this.gameScreen.draw(graphics);
         }
 
     }
 
+
+
+    /**
     private Piece piece = null;
 
     public void mousePressed(MouseEvent e) {
@@ -227,5 +206,5 @@ public class UIManager extends Application {
 
     }
 
-
+**/
 }
