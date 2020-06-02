@@ -29,7 +29,7 @@ public abstract class Piece {
 
     public void draw(FXGraphics2D graphics){
         AffineTransform tx = new AffineTransform();
-        tx.translate(510, 160);
+        tx.translate(105, 105);
         tx.scale(0.3, 0.3);
         graphics.setTransform(tx);
         graphics.drawImage(image, x*320, y*320, null);

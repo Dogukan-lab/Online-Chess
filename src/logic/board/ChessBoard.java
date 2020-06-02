@@ -74,6 +74,8 @@ public class ChessBoard {
             int y_place = object.getInt("y");
             int width = object.getInt("width");
             int height = object.getInt("height");
+            System.out.println(x_place);
+            System.out.println(y_place);
 
             JsonObject object2 = object.getJsonArray("properties").getJsonObject(1);
             String namePlace = object2.getString("value");
@@ -100,7 +102,7 @@ public class ChessBoard {
 
     public AffineTransform getTransform() {
         AffineTransform tx = new AffineTransform();
-        tx.translate(400, 50);
+//        tx.translate(400, 50);
         tx.scale(0.3, 0.3);
         return tx;
     }
@@ -108,5 +110,13 @@ public class ChessBoard {
 
     public Tile[][] getTiles() {
         return tiles;
+    }
+
+    public double getWidth(){
+      return (this.mapWidth*tileWidth* 0.3) + tileWidth;
+    }
+
+    public double getMapHeight(){
+        return (this.mapHeight*tileHeight*0.3) + tileHeight;
     }
 }

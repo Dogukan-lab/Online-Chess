@@ -12,7 +12,8 @@ public class Tile {
 
 
     public Tile(int x, int y, int width, int height, String name) {
-        this.rectangle = new Rectangle2D.Double((x + 1280) * 0.3, (y + 160) * 0.3, width * 0.3, height * 0.3);
+//        this.rectangle = new Rectangle2D.Double((x + 1280) * 0.3, (y + 160) * 0.3, width * 0.3, height * 0.3);
+        this.rectangle = new Rectangle2D.Double(x*0.3, y*0.3, width*0.3, height*0.3);
         this.nameSpace = name;
     }
 
@@ -48,4 +49,8 @@ public class Tile {
                     '}';
         }
     }
+
+
+
+
 }

@@ -31,17 +31,22 @@ public class UIManager extends Application {
     private UIStartScreen startScreen;
     private TileBoard board;
 
+    private Stage stage;
+    private boolean selectedAPiece = false;
+
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+
+        this.stage = primaryStage;
 
         BorderPane mainPane = new BorderPane();
         this.canvas = new ResizableCanvas(g -> draw(g), mainPane);
         mainPane.setCenter(this.canvas);
         FXGraphics2D g2d = new FXGraphics2D(this.canvas.getGraphicsContext2D());
 
-        primaryStage.setMaximized(true);
-        primaryStage.setResizable(false);
+//        primaryStage.setMaximized(true);
+//        primaryStage.setResizable(false);
 
         this.startScreen = new UIStartScreen(canvas);
 
@@ -61,9 +66,9 @@ public class UIManager extends Application {
         }.start();
 
         Thread.sleep(0);
-        primaryStage.setScene(new Scene(mainPane, 1920, 1080));
-        primaryStage.setTitle("Online Chess");
-        primaryStage.show();
+        stage.setScene(new Scene(mainPane, 1920, 1080));
+        stage.setTitle("Online Chess");
+        stage.show();
         draw(g2d);
 
     }
@@ -92,7 +97,16 @@ public class UIManager extends Application {
                 canvas.setOnMousePressed(this::mousePressed);
                 canvas.setOnMouseReleased(this::mouseReleased);
                 canvas.setOnMouseDragged(this::mouseDragged);
+                stage.setX(200);
+                stage.setY(20);
+                stage.setWidth(map.getWidth() + 300);
+                stage.setHeight(map.getMapHeight());
+                stage.setResizable(false);
+//                canvas.setWidth(map.getWidth());
+//                canvas.setHeight(map.getMapHeight());
                 switchedToGameSettings = true;
+                System.out.println(canvas.getWidth());
+                System.out.println(canvas.getHeight());
             }
         }
 
@@ -115,6 +129,9 @@ public class UIManager extends Application {
             for (Piece piece : this.board.getWhitePieces()) {
                 piece.draw(graphics);
             }
+            graphics.setColor(Color.blue);
+            graphics.draw(this.board.getOutline());
+            graphics.setColor(Color.black);
 
         }
 
@@ -191,8 +208,24 @@ public class UIManager extends Application {
     }
 
 
-    private void redraw(FXGraphics2D graphics) {
-        draw(graphics);
+
+    public void mouseClicked(MouseEvent e){
+
+        double mouseX = e.getX();
+        double mouseY = e.getY();
+        if(!selectedAPiece){
+            Piece piece = null;
+
+            for(int y = 0; y < 8; y++){
+                for (int x = 0; x < 8; x++) {
+                    Tile t = this.board.getTiles()[x][y];
+                    if(mouseX > t.getRectangle().getMinX() && mouseX < t.getRectangle().getMaxX() && mouseY > t.getRectangle().getMinY() && mouseY < t.getRectangle().getMaxY()){
+                        piece = t.getPiece();
+                    }
+                }
+            }
+        }
+
     }
 
 

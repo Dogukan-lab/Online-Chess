@@ -2,11 +2,13 @@ package logic.board;
 
 import pieces.*;
 
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 public class TileBoard {
 
+    private Rectangle2D outline;
     private Tile[][] tiles;
     private ArrayList<Piece> blackPieces;
     private ArrayList<Piece> whitePieces;
@@ -20,6 +22,13 @@ public class TileBoard {
         this.images = images;
 
         fillBoardWithPieces();
+        double x_min = tiles[0][0].getRectangle().getMinX();
+        double y_min = tiles[0][0].getRectangle().getMinY();
+//        double x_max = tiles[7][7].getRectangle().getMaxX();
+//        double y_max = tiles[7][7].getRectangle().getMaxY();
+        double width = tiles[0][0].getRectangle().getWidth();
+        double height = tiles[0][0].getRectangle().getHeight();
+        this.outline = new Rectangle2D.Double(320*0.3, y_min, width * 8, height*8);
     }
 
     public void fillBoardWithPieces(){
@@ -198,5 +207,9 @@ public class TileBoard {
 
     public ArrayList<Piece> getWhitePieces() {
         return this.whitePieces;
+    }
+
+    public Rectangle2D getOutline() {
+        return outline;
     }
 }
