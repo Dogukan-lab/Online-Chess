@@ -3468,11 +3468,11 @@
         {
          "columns":1,
          "firstgid":1,
-         "image":"blackSpace.png",
+         "image":"redSpace.png",
          "imageheight":32,
          "imagewidth":32,
          "margin":0,
-         "name":"blackSpace",
+         "name":"redSpace",
          "spacing":0,
          "tilecount":1,
          "tileheight":32,

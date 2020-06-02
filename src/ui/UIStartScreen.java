@@ -31,7 +31,7 @@ public class UIStartScreen {
             e.printStackTrace();
         }
 
-        UIbutton createLobby = new UIbutton("Create Lobby", 0, 0, 1, 0, canvas.getWidth(), canvas.getHeight()/2, 200,100, Color.black);
+        UIbutton createLobby = new UIbutton("Create Lobby", 0, 0, 1, 0, canvas.getWidth(), canvas.getHeight() / 2, 200, 100, Color.black);
         UIbutton joinLobby = new UIbutton("Join Lobby", 0, 0, 1, 0, canvas.getWidth(), canvas.getHeight() + 50, 200, 100, Color.black);
         this.buttons.add(createLobby);
         this.buttons.add(joinLobby);
@@ -40,43 +40,42 @@ public class UIStartScreen {
             double mosX = e.getX();
             double mosY = e.getY();
 
-            for(UIbutton button : this.buttons){
-                if(mosX > button.getRectangle().getMinX() && mosX < button.getRectangle().getMaxX()){
-                    if(mosY > button.getRectangle().getMinY() && mosY < button.getRectangle().getMaxY()){
-                        if(button.getTitleName().equals("Create Lobby")){
-                            UIManager.toMap = true;
-                        }
+            for (UIbutton button : this.buttons) {
+//                if(mosX > button.getRectangle().getMinX() && mosX < button.getRectangle().getMaxX()){
+//                    if(mosY > button.getRectangle().getMinY() && mosY < button.getRectangle().getMaxY()){
+//
+//                    }
+//                }
+                if (button.getRectangle().contains(mosX, mosY)) {
+                    if (button.getTitleName().equals("Create Lobby")) {
+                        UIManager.toMap = true;
                     }
                 }
             }
         });
     }
 
-    public void draw(FXGraphics2D graphics){
+    public void draw(FXGraphics2D graphics) {
 
-        if(this.background != null){
-            graphics.drawImage(this.background, 0,0, (int)this.canvas.getWidth(), (int)this.canvas.getHeight(), null);
+        if (this.background != null) {
+            graphics.drawImage(this.background, 0, 0, (int) this.canvas.getWidth(), (int) this.canvas.getHeight(), null);
         }
 
-        for(UIbutton button : this.buttons){
+        for (UIbutton button : this.buttons) {
             button.draw(graphics);
         }
 
     }
 
-    public void update(double deltaTime){
+    public void update(double deltaTime) {
         for (UIbutton button : this.buttons) {
             button.update(deltaTime);
-            if(button.getTitleName().equals("Create Lobby")){
-                button.setPosition(this.canvas.getWidth()/2,  this.canvas.getHeight()/2);
+            if (button.getTitleName().equals("Create Lobby")) {
+                button.setPosition(this.canvas.getWidth() / 2, this.canvas.getHeight() / 2);
             }
-            if(button.getTitleName().equals("Join Lobby")){
-                button.setPosition(this.canvas.getWidth()/2, this.canvas.getHeight()/2 + 150);
+            if (button.getTitleName().equals("Join Lobby")) {
+                button.setPosition(this.canvas.getWidth() / 2, this.canvas.getHeight() / 2 + 150);
             }
         }
     }
-
-
-
-
 }
