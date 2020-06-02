@@ -123,6 +123,7 @@ public class UIManager extends Application {
             this.startScreen.draw(graphics);
         } else {
             this.map.draw(graphics);
+            graphics.setTransform(new AffineTransform());
             for (Piece piece : this.board.getBlackPieces()) {
                 piece.draw(graphics);
             }
@@ -130,6 +131,7 @@ public class UIManager extends Application {
                 piece.draw(graphics);
             }
             graphics.setColor(Color.blue);
+            graphics.setTransform(new AffineTransform());
             graphics.draw(this.board.getOutline());
             graphics.setColor(Color.black);
 
@@ -191,13 +193,13 @@ public class UIManager extends Application {
             }
 
             //get the translate position
-             Point2D translatePos = new Point2D.Double((e.getX() - offsetx), (e.getY() - offsety));
+             Point2D translatePos = new Point2D.Double((e.getX()), (e.getY()));
 //            piece.setX((int)translatePos.getX()/320);
 //            piece.setY((int) translatePos.getY()/320);
 
             //move the block to the desired position
 //            piece.moveTo((int) translatePos.getX()/320, (int) translatePos.getY()/320);
-            piece.moveTo((int) translatePos.getX()/320, (int) translatePos.getY()/320);
+            piece.moveTo((int) (translatePos.getX()/320), (int) (translatePos.getY()/320));
 
             //draw the canvas again
 //            draw(new FXGraphics2D(canvas.getGraphicsContext2D()));

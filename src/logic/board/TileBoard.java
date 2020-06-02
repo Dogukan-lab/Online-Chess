@@ -28,7 +28,7 @@ public class TileBoard {
 //        double y_max = tiles[7][7].getRectangle().getMaxY();
         double width = tiles[0][0].getRectangle().getWidth();
         double height = tiles[0][0].getRectangle().getHeight();
-        this.outline = new Rectangle2D.Double(320*0.3, y_min, width * 8, height*8);
+        this.outline = new Rectangle2D.Double(x_min, y_min, width * 8, height*8);
     }
 
     public void fillBoardWithPieces(){
