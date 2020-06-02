@@ -1,4 +1,4 @@
-package logic.board;
+package logic;
 
 import pieces.Piece;
 

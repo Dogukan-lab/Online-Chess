@@ -1,5 +1,6 @@
 package logic.board;
 
+import logic.Tile;
 import pieces.*;
 
 import java.awt.geom.Rectangle2D;

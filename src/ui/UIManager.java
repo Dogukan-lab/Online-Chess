@@ -6,9 +6,8 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import logic.board.ChessBoard;
 import logic.SpriteSheetReader;
-import logic.board.Tile;
+import logic.Tile;
 import logic.board.TileBoard;
 import org.jfree.fx.FXGraphics2D;
 import org.jfree.fx.ResizableCanvas;
@@ -157,7 +156,7 @@ public class UIManager extends Application {
                 Piece p = this.board.getTiles()[x][y].getPiece();
                 System.out.println(t.toString());
                 if (p != null) {
-                    if (e.getX() > t.getRectangle().getMinX() && e.getX() < t.getRectangle().getMaxX() && e.getY() > t.getRectangle().getMinY() && e.getY() < t.getRectangle().getMaxY()) {
+                    if (t.getRectangle().contains(e.getX(), e.getY())) {
                         piece = p;
                         System.out.println("CLICKED ON A BLACK PIECE: " + piece.isBlack());
                         return;
