@@ -17,12 +17,14 @@ public class Pawn extends Piece {
     }
 
     @Override
-    public void moveTo(int x, int y) {
+    public boolean moveTo(int x, int y) {
         if(canMove(x,y)){
             super.setX(x);
             super.setY(y);
+            return true;
         }
 
+        return false;
     }
 
 }

@@ -24,7 +24,7 @@ public abstract class Piece {
 
     public abstract boolean canMove(int x, int y);
 
-    public abstract void moveTo(int x, int y);
+    public abstract boolean moveTo(int x, int y);
 
     public void draw(FXGraphics2D graphics){
         graphics.drawImage(image, 100 + (x*100), 100 + (y*100), null);
