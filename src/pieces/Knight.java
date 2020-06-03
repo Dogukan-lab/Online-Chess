@@ -52,11 +52,13 @@ public class Knight extends Piece {
     }
 
     @Override
-    public void moveTo(final int x, final int y) {
+    public boolean moveTo(final int x, final int y) {
         if (canMove(x, y)) {
-
+            super.setX(x);
+            super.setY(y);
+            return true;
         }
-
+        return false;
     }
 
 

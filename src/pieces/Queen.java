@@ -17,8 +17,9 @@ public class Queen extends Piece {
     }
 
     @Override
-    public void moveTo(int x, int y) {
+    public boolean moveTo(int x, int y) {
 
+        return true;
     }
 
 
