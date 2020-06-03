@@ -1,9 +1,8 @@
 package pieces;
 
-import logic.board.TileBoard;
-import org.jfree.fx.FXGraphics2D;
 
-import java.awt.geom.AffineTransform;
+import logic.experiment.TileBoard;
+import org.jfree.fx.FXGraphics2D;
 import java.awt.image.BufferedImage;
 
 public abstract class Piece {
@@ -28,11 +27,7 @@ public abstract class Piece {
     public abstract void moveTo(int x, int y);
 
     public void draw(FXGraphics2D graphics){
-        AffineTransform tx = new AffineTransform();
-        tx.translate(510, 160);
-        tx.scale(0.3, 0.3);
-        graphics.setTransform(tx);
-        graphics.drawImage(image, x*320, y*320, null);
+        graphics.drawImage(image, 100 + (x*100), 100 + (y*100), null);
     }
 
 

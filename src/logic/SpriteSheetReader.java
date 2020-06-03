@@ -27,7 +27,7 @@ public class SpriteSheetReader {
     public void readAll(){
         for(int y = 0; y < 2; y++){
             for (int x = 0; x < 6; x++) {
-                BufferedImage image = this.sourceImage.getSubimage(x*200, y*200, 200, 200);
+                BufferedImage image = this.sourceImage.getSubimage(x*100, y*100, 100, 100);
                 this.images.add(image);
             }
         }

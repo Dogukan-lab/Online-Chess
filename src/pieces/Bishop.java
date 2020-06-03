@@ -1,6 +1,6 @@
 package pieces;
 
-import logic.board.TileBoard;
+import logic.experiment.TileBoard;
 
 import java.awt.image.BufferedImage;
 

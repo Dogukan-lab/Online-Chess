@@ -1,7 +1,7 @@
 package pieces;
 
 import data.Direction;
-import logic.board.TileBoard;
+import logic.experiment.TileBoard;
 
 import java.awt.image.BufferedImage;
 
@@ -84,7 +84,11 @@ public class Rook extends Piece {
 
     @Override
     public void moveTo(int x, int y) {
+        System.out.println("CHECKING FOR MOVEMENT HERE!!!");
+        System.out.println(x);
+        System.out.println(y);;
         if(canMove(x,y)){
+            System.out.println("LETS MOVE !");
             super.setX(x);
             super.setY(y);
         }
