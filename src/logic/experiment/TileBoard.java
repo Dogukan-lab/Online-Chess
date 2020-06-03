@@ -240,4 +240,8 @@ public class TileBoard {
     public Tile[][] getTiles() {
         return tiles;
     }
+
+    public Rectangle2D getOutline() {
+        return outline;
+    }
 }

@@ -38,7 +38,7 @@ public class Rook extends Piece {
         if (x > this.getX()) {
             this.direction = Direction.RIGHT;
         }
-        if (x < this.getY()) {
+        if (x < this.getX()) {
             this.direction = Direction.LEFT;
         }
 
@@ -83,7 +83,7 @@ public class Rook extends Piece {
     }
 
     @Override
-    public void moveTo(int x, int y) {
+    public boolean moveTo(int x, int y) {
         System.out.println("CHECKING FOR MOVEMENT HERE!!!");
         System.out.println(x);
         System.out.println(y);;
@@ -91,7 +91,9 @@ public class Rook extends Piece {
             System.out.println("LETS MOVE !");
             super.setX(x);
             super.setY(y);
+            return true;
         }
+        return false;
     }
 
 }
