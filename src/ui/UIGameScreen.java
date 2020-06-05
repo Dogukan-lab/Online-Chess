@@ -25,9 +25,6 @@ public class UIGameScreen {
         selectedTile = null;
         selectedPiece = null;
 
-
-////                canvas.setOnMouseReleased(this::mouseReleased);
-////                canvas.setOnMouseDragged(this::mouseDragged);
     }
 
 
@@ -100,8 +97,6 @@ public class UIGameScreen {
                     selectedPiece = null;
                 }
             }
-
-
 
         }
 
