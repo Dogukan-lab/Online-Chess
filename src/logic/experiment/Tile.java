@@ -33,7 +33,9 @@ public class Tile {
         this.piece = piece;
     }
 
-
+    public Color getColor() {
+        return color;
+    }
 
     public void draw(FXGraphics2D graphics){
         graphics.setColor(this.color);

@@ -86,7 +86,7 @@ public class Rook extends Piece {
     public boolean moveTo(int x, int y) {
         System.out.println("CHECKING FOR MOVEMENT HERE!!!");
         System.out.println(x);
-        System.out.println(y);;
+        System.out.println(y);
         if(canMove(x,y)){
             System.out.println("LETS MOVE !");
             this.setX(x);

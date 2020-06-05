@@ -123,7 +123,7 @@ public class TileBoard {
         this.allPieces.add(pawn2);
         this.allPieces.add(pawn3);
         this.allPieces.add(pawn4);
-        this.allPieces.add(pawn5);
+//        this.allPieces.add(pawn5);
         this.allPieces.add(pawn6);
         this.allPieces.add(pawn7);
         this.allPieces.add(pawn8);
@@ -193,7 +193,7 @@ public class TileBoard {
         this.allPieces.add(pawnW2);
         this.allPieces.add(pawnW3);
         this.allPieces.add(pawnW4);
-        this.allPieces.add(pawnW5);
+//        this.allPieces.add(pawnW5);
         this.allPieces.add(pawnW6);
         this.allPieces.add(pawnW7);
         this.allPieces.add(pawnW8);

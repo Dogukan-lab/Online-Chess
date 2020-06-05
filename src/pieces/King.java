@@ -12,7 +12,18 @@ public class King extends Piece {
 
     @Override
     public boolean canMove(int x, int y) {
-        return false;
+        Piece possiblePiece = board.getPiece(x, y);
+        if (possiblePiece != null) {
+            if (possiblePiece.isWhite && this.isWhite) {
+                return false;
+            }
+            if (possiblePiece.isBlack() && this.isBlack()) {
+                return false;
+            }
+        }
+
+
+        return true;
     }
 
     @Override
