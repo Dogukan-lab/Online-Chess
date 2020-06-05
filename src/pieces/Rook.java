@@ -89,8 +89,8 @@ public class Rook extends Piece {
         System.out.println(y);;
         if(canMove(x,y)){
             System.out.println("LETS MOVE !");
-            super.setX(x);
-            super.setY(y);
+            this.setX(x);
+            this.setY(y);
             return true;
         }
         return false;
