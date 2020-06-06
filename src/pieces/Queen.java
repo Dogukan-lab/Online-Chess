@@ -52,22 +52,19 @@ public class Queen extends Piece {
         Tile currentTile = null;
         switch (this.direction) {
             case UP:
-                if (this.isWhite()) {
-                    spaces_to_move = Math.abs(y - this.getY());
-                    for (int i = 1; i < spaces_to_move; i++) {
-                        p = this.board.getPiece(this.getX(), this.getY() - i);
-                        if (p != null && this.isWhite()) {
-                            return false;
-                        }
+                spaces_to_move = Math.abs(y - this.getY());
+                for (int i = 1; i < spaces_to_move; i++) {
+                    p = this.board.getPiece(this.getX(), this.getY() - i);
+                    if (p != null && this.isWhite()) {
+                        return false;
                     }
                 }
-                if (this.isBlack()) {
-                    spaces_to_move = Math.abs(y - this.getY());
-                    for (int i = 1; i < spaces_to_move; i++) {
-                        p = this.board.getPiece(this.getX(), this.getY() - i);
-                        if (p != null && this.isBlack()) {
-                            return false;
-                        }
+
+                spaces_to_move = Math.abs(y - this.getY());
+                for (int i = 1; i < spaces_to_move; i++) {
+                    p = this.board.getPiece(this.getX(), this.getY() - i);
+                    if (p != null && this.isBlack()) {
+                        return false;
                     }
                 }
                 break;
@@ -101,7 +98,7 @@ public class Queen extends Piece {
             case DIAGONAL:
                 spaces_to_move = Math.abs(this.getY() - y);
                 System.out.println("SPACES TO MOVE: " + spaces_to_move);
-                if(x < this.getX() && y < this.getY()){
+                if (x < this.getX() && y < this.getY()) {
                     for (int i = 1; i < spaces_to_move; i++) {
                         p = this.board.getPiece(this.getX() - i, this.getY() - i);
 
@@ -110,7 +107,7 @@ public class Queen extends Piece {
                         }
                     }
                 }
-                if(x > this.getX() && y < this.getY()){
+                if (x > this.getX() && y < this.getY()) {
                     for (int i = 1; i < spaces_to_move; i++) {
                         p = this.board.getPiece(this.getX() + i, this.getY() - i);
 
@@ -119,7 +116,7 @@ public class Queen extends Piece {
                         }
                     }
                 }
-                if (x < this.getX() && y > this.getY()){
+                if (x < this.getX() && y > this.getY()) {
                     for (int i = 1; i < spaces_to_move; i++) {
                         p = this.board.getPiece(this.getX() - i, this.getY() + i);
 
@@ -128,7 +125,7 @@ public class Queen extends Piece {
                         }
                     }
                 }
-                if (x > this.getX() && y > this.getY()){
+                if (x > this.getX() && y > this.getY()) {
                     for (int i = 1; i < spaces_to_move; i++) {
                         p = this.board.getPiece(this.getX() + i, this.getY() + i);
 

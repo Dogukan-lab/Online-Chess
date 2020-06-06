@@ -54,7 +54,6 @@ public class King extends Piece {
                 if (piece != null) {
                     return false;
                 }
-
                 break;
 
             case DOWN:
@@ -90,7 +89,6 @@ public class King extends Piece {
                     if (piece != null) {
                         return false;
                     }
-
                 }
                 if (x < this.getX() && y > this.getY()) {
                     piece = board.getPiece(this.getX() - spaces_to_move, this.getY() + spaces_to_move);
