@@ -6,14 +6,15 @@ import pieces.*;
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class TileBoard {
+public class TileBoard implements Serializable {
 
     private Rectangle2D outline;
     private Tile[][] tiles;
     private ArrayList<Piece> allPieces;
-    private ArrayList<BufferedImage> imagesPieces;
+     transient private ArrayList<BufferedImage> imagesPieces;
     private int positioning = 100;
     private float thickness = 5;
 
@@ -243,5 +244,9 @@ public class TileBoard {
 
     public Rectangle2D getOutline() {
         return outline;
+    }
+
+    synchronized public ArrayList<Piece> getAllPieces() {
+        return allPieces;
     }
 }

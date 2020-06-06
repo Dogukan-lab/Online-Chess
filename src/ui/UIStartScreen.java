@@ -1,24 +1,26 @@
 package ui;
 
+import data.Data;
+import logic.Client;
 import org.jfree.fx.FXGraphics2D;
 import org.jfree.fx.ResizableCanvas;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.geom.AffineTransform;
-import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.nio.Buffer;
 import java.util.ArrayList;
 
 public class UIStartScreen {
 
 
+    private Data data = Data.getInstance();
+
     private ResizableCanvas canvas;
     private ArrayList<UIbutton> buttons;
     private BufferedImage background;
+
 
     public UIStartScreen(ResizableCanvas canvas) {
 
@@ -49,6 +51,27 @@ public class UIStartScreen {
                 if (button.getRectangle().contains(mosX, mosY)) {
                     if (button.getTitleName().equals("Create Lobby")) {
                         UIManager.toMap = true;
+
+                        Thread threadClientPlayerOne = new Thread( () ->{
+                            Client clientPlayerOne = new Client("localhost", 24224);
+                            data.setClient(clientPlayerOne);
+                            clientPlayerOne.connectObject();
+
+                        });
+
+                        threadClientPlayerOne.start();
+
+                        data.setPlayerOneTurn(true);
+
+                    }
+                    if(button.getTitleName().equals("Join Lobby")){
+                        UIManager.toMap = true;
+                        Thread threadClientPlayerTwo = new Thread( () ->{
+                            Client clientPlayerTwo = new Client("localhost", 24224);
+                            clientPlayerTwo.connectObject();
+                        });
+                        threadClientPlayerTwo.start();
+                        data.setPlayerTwoTurn(false);
                     }
                 }
             }

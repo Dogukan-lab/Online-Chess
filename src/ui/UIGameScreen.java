@@ -1,5 +1,6 @@
 package ui;
 
+import data.Data;
 import javafx.scene.input.MouseEvent;
 import logic.SpriteSheetReader;
 import logic.experiment.Tile;
@@ -8,11 +9,16 @@ import org.jfree.fx.FXGraphics2D;
 import org.jfree.fx.ResizableCanvas;
 import pieces.Piece;
 
+import java.lang.reflect.Array;
+
 public class UIGameScreen {
 
+    private Data data = Data.getInstance();
+
     private ResizableCanvas canvas;
-    private TileBoard tileBoard;
+//    private TileBoard tileBoard;
     private boolean switchedToGame = true;
+    private boolean receive = false;
 
     private Tile selectedTile;
     private Piece selectedPiece;
@@ -20,7 +26,7 @@ public class UIGameScreen {
     public UIGameScreen(ResizableCanvas canvas) {
         this.canvas = canvas;
         SpriteSheetReader spriteReader = new SpriteSheetReader("resources/sprite-sheet-pieces.png");
-        this.tileBoard = new TileBoard(spriteReader.getImages());
+//        this.tileBoard = new TileBoard(spriteReader.getImages());
 
         selectedTile = null;
         selectedPiece = null;
@@ -35,22 +41,28 @@ public class UIGameScreen {
             this.switchedToGame = false;
         }
 
+        if(receive){
+            data.getClient().receiveMove();
+            receive = false;
+        }
+
+
     }
 
 
     public void draw(FXGraphics2D graphics){
-        this.tileBoard.draw(graphics);
+        data.getTileBoard().draw(graphics);
     }
 
 
 
     private void mousePressed(MouseEvent e) {
         if(selectedPiece == null) {
-            if (this.tileBoard.getOutline().contains(e.getX(), e.getY())) {
+            if (data.getTileBoard().getOutline().contains(e.getX(), e.getY())) {
                 for (int y = 0; y < 8; y++) {
                     for (int x = 0; x < 8; x++) {
-                        Tile t = this.tileBoard.getTiles()[x][y];
-                        Piece p = this.tileBoard.getTiles()[x][y].getPiece();
+                        Tile t = this.data.getTileBoard().getTiles()[x][y];
+                        Piece p = this.data.getTileBoard().getTiles()[x][y].getPiece();
 //                        System.out.println(t.toString());
                         if (p != null) {
                             if (t.getRectangle().contains(e.getX(), e.getY())) {
@@ -65,12 +77,12 @@ public class UIGameScreen {
             }
         }
         else{
-            if(this.tileBoard.getOutline().contains(e.getX(), e.getY())){
+            if(this.data.getTileBoard().getOutline().contains(e.getX(), e.getY())){
 
                 Tile tileSelected = null;
                 for (int y = 0; y < 8; y++) {
                     for (int x = 0; x < 8; x++) {
-                        Tile t = this.tileBoard.getTiles()[x][y];
+                        Tile t = this.data.getTileBoard().getTiles()[x][y];
 //                        System.out.println(t.toString());
                         if (t.getRectangle().contains(e.getX(), e.getY())) {
                             tileSelected = t;
@@ -89,8 +101,28 @@ public class UIGameScreen {
                     double y = tileSelected.getRectangle().getMinY()/100;
 
                     if(selectedPiece.moveTo((int)x, (int)y)){
+                        Object[] list = data.getTileBoard().getAllPieces().toArray();
+                        for(Object p : list){
+                            if(p instanceof Piece) {
+                                Piece piece = (Piece) p;
+                                System.out.println("CHECKING FOR PIECES X: " + x + " == " + piece.getX());
+                                System.out.println("CHECKING FOR PIECES Y: " + y + " == " + piece.getY());
+                                System.out.println("");
+                                if (((int) x) == piece.getX() && ((int) y) == piece.getY()) {
+                                    if(!piece.equals(selectedPiece)){
+                                        System.out.println("REMOVING PIECE: " + piece.toString());
+                                        data.getTileBoard().getAllPieces().remove(piece);
+                                    }
+
+                                }
+                            }
+                        }
                         selectedTile.setPiece(null);
                         tileSelected.setPiece(selectedPiece);
+
+
+//                        data.getClient().makeMove();
+//                        receive = true;
                     }
 
                     selectedTile = null;
