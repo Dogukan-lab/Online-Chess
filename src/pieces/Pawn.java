@@ -110,7 +110,7 @@ public class Pawn extends Piece {
 
         switch (direction) {
             case UP:
-                for (int i = 1; i < spaces_to_move; i++) {
+                for (int i = 1; i <= spaces_to_move; i++) {
                     Piece p = board.getPiece(this.getX(), this.getY() - i);
                     if (p != null) {
                         return false;
@@ -119,7 +119,7 @@ public class Pawn extends Piece {
                 break;
 
             case DOWN:
-                for (int i = 1; i < spaces_to_move; i++) {
+                for (int i = 1; i <= spaces_to_move; i++) {
                     Piece p = board.getPiece(this.getX(), this.getY() + i);
                     if (p != null) {
                         return false;
