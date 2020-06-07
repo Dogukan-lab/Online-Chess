@@ -286,10 +286,6 @@ public class TileBoard implements Serializable {
         return null;
     }
 
-    public ArrayList<Piece> getAllPieces() {
-        return allPieces;
-    }
-
     public void draw(FXGraphics2D graphics){
         for (int y = 0; y < this.tiles.length; y++) {
             for (int x = 0; x < this.tiles.length; x++) {

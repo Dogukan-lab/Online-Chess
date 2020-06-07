@@ -205,30 +205,40 @@ public class King extends Piece {
 
     }
 
-    public boolean isCheckMate() {
-        for (Piece p : this.board.getAllPieces()) {
-            if (p instanceof Rook) {
-                if (p.isWhite() && this.isBlack()) {
-                    if (p.canMove(this.getX(), this.getY())) {
-                        System.out.println("Reached the white check for the rook!");
-                        return true;
-                    }
-                    else return false;
-                } else {
-                    if (p.canMove(this.getX(), this.getY())) {
-                        System.out.println("Reached the black check for the rook!");
-                        return true;
-                    } else return false;
-                }
-            } else if (p instanceof Pawn) {
-                if (p.isWhite()) {
-                    if (p.canMove(this.getX(), this.getY())) return true;
-                    else return false;
-                } else {
-                    if (p.canMove(this.getX(), this.getY())) return true;
-                    else return false;
+
+    public boolean isCheck(){
+
+        for(Piece p : this.board.getAllPieces()){
+
+            if(this.isWhite && p.isBlack()){
+                if(p.canMove(this.x, this.y)){
+                    return true;
                 }
             }
+            if(this.isBlack() && p.isWhite){
+                if(p.canMove(this.x, this.y)){
+                    return true;
+                }
+            }
+
+        }
+        return false;
+    }
+
+    public boolean isCheckMate() {
+
+//        if(){
+//
+//        }
+
+
+
+        for (Piece p : this.board.getAllPieces()) {
+
+
+
+
+
         }
         return false;
     }
