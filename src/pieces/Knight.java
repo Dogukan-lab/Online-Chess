@@ -6,11 +6,9 @@ import logic.experiment.TileBoard;
 import java.awt.image.BufferedImage;
 
 public class Knight extends Piece {
-    private Direction direction;
 
     public Knight(int x, int y, boolean isWhite, BufferedImage image, TileBoard tileBoard) {
         super(x, y, isWhite, image, tileBoard);
-        this.direction = Direction.INIT;
     }
 
     @Override
@@ -24,82 +22,26 @@ public class Knight extends Piece {
                 return false;
             }
         }
+
         if ((this.getX() - 2) == x && (this.getY() - 1) == y) {
-            this.direction = Direction.LEFT_UP;
+            return true;
         } else if ((this.getX() - 2) == x && (this.getY() + 1) == y) {
-            this.direction = Direction.LEFT_DOWN;
+            return true;
         } else if ((this.getY() - 2) == y && (this.getX() - 1) == x) {
-            this.direction = Direction.UP_LEFT;
+            return true;
         } else if ((this.getY() - 2) == y && (this.getX() + 1) == x) {
-            this.direction = Direction.UP_RIGHT;
+            return true;
         } else if ((this.getX() + 2) == x && (this.getY() - 1) == y) {
-            this.direction = Direction.RIGHT_UP;
+            return true;
         } else if ((this.getX() + 2) == x && (this.getY() + 1) == y) {
-            this.direction = Direction.RIGHT_DOWN;
+            return true;
         } else if ((this.getY() + 2) == y && (this.getX() - 1) == x) {
-            this.direction = Direction.DOWN_LEFT;
+            return true;
         } else if ((this.getY() + 2) == y && (this.getX() + 1) == x) {
-            this.direction = Direction.DOWN_RIGHT;
+            return true;
         } else {
             return false;
         }
-
-
-    Piece piece = null;
-        switch(this.direction)
-
-    {
-        case LEFT_UP:
-            piece = this.board.getPiece(this.getX() - 2, this.getY() - 1);
-            if (piece != null) {
-                return false;
-            }
-            break;
-        case LEFT_DOWN:
-            piece = this.board.getPiece(this.getX() - 2, this.getY() + 1);
-            if (piece != null) {
-                return false;
-            }
-            break;
-        case UP_LEFT:
-            piece = this.board.getPiece(this.getX() - 1, this.getY() - 2);
-            if (piece != null) {
-                return false;
-            }
-            break;
-        case UP_RIGHT:
-            piece = this.board.getPiece(this.getX() + 1, this.getY() - 2);
-            if (piece != null) {
-                return false;
-            }
-            break;
-        case RIGHT_UP:
-            piece = this.board.getPiece(this.getX() + 2, this.getY() - 1);
-            if (piece != null) {
-                return false;
-            }
-            break;
-        case RIGHT_DOWN:
-            piece = this.board.getPiece(this.getX() + 2, this.getY() + 1);
-            if (piece != null) {
-                return false;
-            }
-            break;
-        case DOWN_RIGHT:
-            piece = this.board.getPiece(this.getX() + 1, this.getY() + 2);
-            if (piece != null) {
-                return false;
-            }
-            break;
-        case DOWN_LEFT:
-            piece = this.board.getPiece(this.getX() - 1, this.getY() + 2);
-            if (piece != null) {
-                return false;
-            }
-            break;
-    }
-
-        return true;
 }
 
     @Override
