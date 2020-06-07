@@ -145,6 +145,7 @@ public class UIGameScreen {
                             }
                             selectedTile.setPiece(null);
                             tileSelected.setPiece(selectedPiece);
+
                             data.getPlayer().setMoved_a_piece(true);
                         }
 
