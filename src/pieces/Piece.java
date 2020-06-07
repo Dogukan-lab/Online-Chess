@@ -4,14 +4,15 @@ package pieces;
 import logic.experiment.TileBoard;
 import org.jfree.fx.FXGraphics2D;
 import java.awt.image.BufferedImage;
+import java.io.Serializable;
 
-public abstract class Piece {
+public abstract class Piece implements Serializable {
 
 
     protected int x;
     protected int y;
     protected boolean isWhite;
-    protected BufferedImage image;
+    transient protected BufferedImage image;
     protected TileBoard board;
 
     public Piece(int x, int y, boolean isWhite, BufferedImage image, TileBoard tileBoard) {
@@ -64,5 +65,9 @@ public abstract class Piece {
                 "x= " + x +
                 ", y= " + y +
                 '}';
+    }
+
+    public void setImage(BufferedImage image) {
+        this.image = image;
     }
 }

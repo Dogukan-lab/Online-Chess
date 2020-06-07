@@ -5,8 +5,9 @@ import pieces.Piece;
 
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
+import java.io.Serializable;
 
-public class Tile {
+public class Tile implements Serializable {
 
     private Rectangle2D rectangle;
     private Piece piece;
