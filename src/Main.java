@@ -1,6 +1,11 @@
+import data.Data;
+import ui.UIManager;
+
 public class Main {
+    Data data = Data.getInstance();
+
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        UIManager.launch(UIManager.class);
     }
 }
