@@ -48,14 +48,12 @@ public class Queen extends Piece {
 
         int spaces_to_move = 0;
         Piece p = null;
-        Tile tile = null;
-        Tile currentTile = null;
         switch (this.direction) {
             case UP:
                 spaces_to_move = Math.abs(y - this.getY());
                 for (int i = 1; i < spaces_to_move; i++) {
                     p = this.board.getPiece(this.getX(), this.getY() - i);
-                    if (p != null && this.isWhite()) {
+                    if (p != null) {
                         return false;
                     }
                 }
@@ -63,7 +61,7 @@ public class Queen extends Piece {
                 spaces_to_move = Math.abs(y - this.getY());
                 for (int i = 1; i < spaces_to_move; i++) {
                     p = this.board.getPiece(this.getX(), this.getY() - i);
-                    if (p != null && this.isBlack()) {
+                    if (p != null) {
                         return false;
                     }
                 }
@@ -97,7 +95,6 @@ public class Queen extends Piece {
                 break;
             case DIAGONAL:
                 spaces_to_move = Math.abs(this.getY() - y);
-                System.out.println("SPACES TO MOVE: " + spaces_to_move);
                 if (x < this.getX() && y < this.getY()) {
                     for (int i = 1; i < spaces_to_move; i++) {
                         p = this.board.getPiece(this.getX() - i, this.getY() - i);
@@ -119,7 +116,6 @@ public class Queen extends Piece {
                 if (x < this.getX() && y > this.getY()) {
                     for (int i = 1; i < spaces_to_move; i++) {
                         p = this.board.getPiece(this.getX() - i, this.getY() + i);
-
                         if (p != null) {
                             return false;
                         }
@@ -128,13 +124,11 @@ public class Queen extends Piece {
                 if (x > this.getX() && y > this.getY()) {
                     for (int i = 1; i < spaces_to_move; i++) {
                         p = this.board.getPiece(this.getX() + i, this.getY() + i);
-
                         if (p != null) {
                             return false;
                         }
                     }
                 }
-
                 break;
         }
         return true;

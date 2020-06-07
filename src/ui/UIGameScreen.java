@@ -30,22 +30,16 @@ public class UIGameScreen {
 
     }
 
-
-
     public void update(double deltaTime){
         if(this.switchedToGame){
             this.canvas.setOnMouseClicked(this::mousePressed);
             this.switchedToGame = false;
         }
-
     }
-
 
     public void draw(FXGraphics2D graphics){
         this.tileBoard.draw(graphics);
     }
-
-
 
     private void mousePressed(MouseEvent e) {
         if(selectedPiece == null) {
@@ -54,7 +48,6 @@ public class UIGameScreen {
                     for (int x = 0; x < 8; x++) {
                         Tile t = this.tileBoard.getTiles()[x][y];
                         Piece p = this.tileBoard.getTiles()[x][y].getPiece();
-//                        System.out.println(t.toString());
                         if (p != null) {
                             if (t.getRectangle().contains(e.getX(), e.getY())) {
                                 selectedTile = t;
@@ -66,8 +59,7 @@ public class UIGameScreen {
                     }
                 }
             }
-        }
-        else{
+        } else {
             if(this.tileBoard.getOutline().contains(e.getX(), e.getY())){
                 Tile tileSelected = null;
                 for (int y = 0; y < 8; y++) {
@@ -84,8 +76,7 @@ public class UIGameScreen {
                 if(tileSelected.getPiece() != null && tileSelected.getPiece().equals(selectedPiece)){
                     selectedTile = null;
                     selectedPiece = null;
-                }
-                else {
+                } else {
                     double x = tileSelected.getRectangle().getMinX()/100;
                     double y = tileSelected.getRectangle().getMinY()/100;
 
@@ -94,9 +85,6 @@ public class UIGameScreen {
                         for(Object p : list){
                             if(p instanceof Piece) {
                                 Piece piece = (Piece) p;
-                                System.out.println("CHECKING FOR PIECES X: " + x + " == " + piece.getX());
-                                System.out.println("CHECKING FOR PIECES Y: " + y + " == " + piece.getY());
-                                System.out.println("");
                                 if (((int) x) == piece.getX() && ((int) y) == piece.getY()) {
                                     if(!piece.equals(selectedPiece)){
                                         System.out.println("REMOVING PIECE: " + piece.toString());
@@ -112,11 +100,10 @@ public class UIGameScreen {
 
                     selectedTile = null;
                     selectedPiece = null;
+                    // Hier een if statement van waneer de tile en piece null wordt, dan zet je de turn van de huidige speler op false.
+                    // Via de server regel je dan wanneer dit gebeurd dat de volgende aan de beurt zal zijn.
                 }
             }
-
         }
-
     }
-
 }

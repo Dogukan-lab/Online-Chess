@@ -33,7 +33,6 @@ public class Bishop extends Piece {
 
         Piece p = null;
         int spaces_to_move = Math.abs(this.getY() - y);
-        System.out.println("SPACES TO MOVE: " + spaces_to_move);
         if (x < this.getX() && y < this.getY()) {
             for (int i = 1; i < spaces_to_move; i++) {
                 p = this.board.getPiece(this.getX() - i, this.getY() - i);

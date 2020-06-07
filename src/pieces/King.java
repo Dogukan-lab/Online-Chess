@@ -1,7 +1,9 @@
 package pieces;
 
 import data.Direction;
+import logic.experiment.Tile;
 import logic.experiment.TileBoard;
+import sun.rmi.runtime.Log;
 
 import java.awt.image.BufferedImage;
 
@@ -45,81 +47,189 @@ public class King extends Piece {
             }
         }
 
-        int spaces_to_move = 1;
-        Piece piece = null;
-
+        int spaces_to_move;
+        Piece piece;
         switch (this.direction) {
             case UP:
-                piece = board.getPiece(this.getX(), this.getY() - spaces_to_move);
-                if (piece != null) {
-                    return false;
+                spaces_to_move = Math.abs(y - this.getY());
+                if (this.isWhite()) {
+                    if (spaces_to_move < 2) {
+                        piece = board.getPiece(this.getX(), this.getY() - spaces_to_move);
+                        if (piece != null && piece.isWhite()) {
+                            System.out.println("Ik kan niet het speelstuk eten");
+                            return false;
+                        }
+                    } else return false;
+                } else {
+                    if (spaces_to_move < 2) {
+                        piece = board.getPiece(this.getX(), this.getY() - spaces_to_move);
+                        if (piece != null && piece.isBlack()) {
+                            System.out.println("Ik kan niet het speelstuk eten");
+                            return false;
+                        }
+                    } else return false;
                 }
-                break;
 
+                break;
             case DOWN:
-                piece = board.getPiece(this.getX(), this.getY() + spaces_to_move);
-                if (piece != null) {
-                    return false;
+                spaces_to_move = Math.abs(y - this.getY());
+                if (this.isWhite()) {
+                    if (spaces_to_move < 2) {
+                        piece = board.getPiece(this.getX(), this.getY() + spaces_to_move);
+                        if (piece != null && piece.isWhite()) {
+                            System.out.println("Checking for white");
+                            System.out.println("Ik kan niet het speelstuk eten");
+                            return false;
+                        }
+                    } else return false;
+                } else {
+                    if (spaces_to_move < 2) {
+                        piece = board.getPiece(this.getX(), this.getY() + spaces_to_move);
+                        if (piece != null && piece.isBlack()) {
+                            System.out.println("Checking for Black");
+                            return false;
+                        }
+                    } else return false;
                 }
                 break;
-
             case LEFT:
-                piece = board.getPiece(this.getX() - spaces_to_move, this.getY());
-                if (piece != null) {
-                    return false;
+                spaces_to_move = Math.abs(x - this.getX());
+                if (this.isWhite()) {
+                    if (spaces_to_move < 2) {
+                        piece = board.getPiece(this.getX() - 1, this.getY());
+                        if (piece != null && piece.isWhite()) {
+                            return false;
+                        }
+                    } else if (spaces_to_move > 2) return false;
+                } else {
+                    if (spaces_to_move < 2) {
+                        piece = board.getPiece(this.getX() - 1, this.getY());
+                        if (piece != null && piece.isBlack()) {
+                            return false;
+                        }
+                    } else if (spaces_to_move > 2) return false;
                 }
                 break;
-
             case RIGHT:
-                piece = board.getPiece(this.getX() + spaces_to_move, this.getY());
-                if (piece != null) {
-                    return false;
+                spaces_to_move = Math.abs(x - this.getX());
+                if (this.isWhite()) {
+                    if (spaces_to_move < 2) {
+                        piece = board.getPiece(this.getX() + 1, this.getY());
+                        if (piece != null && piece.isWhite()) {
+                            return false;
+                        }
+                    } else if (spaces_to_move > 2) return false;
+                } else {
+                    if (spaces_to_move < 2) {
+                        piece = board.getPiece(this.getX() + 1, this.getY());
+                        if (piece != null && piece.isBlack()) {
+                            return false;
+                        }
+                    } else if (spaces_to_move > 2) return false;
                 }
+
                 break;
-
             case DIAGONAL:
-                if (x < this.getX() && y < this.getY()) {
-                    piece = board.getPiece(this.getX() - spaces_to_move, this.getY() - spaces_to_move);
-                    if (piece != null) {
-                        return false;
-                    }
-                }
-                if (x > this.getX() && y < this.getY()) {
-                    piece = board.getPiece(this.getX() + spaces_to_move, this.getY() - spaces_to_move);
-                    if (piece != null) {
-                        return false;
-                    }
-                }
-                if (x < this.getX() && y > this.getY()) {
-                    piece = board.getPiece(this.getX() - spaces_to_move, this.getY() + spaces_to_move);
-                    if (piece != null) {
-                        return false;
-                    }
+                spaces_to_move = Math.abs(y - this.getY());
+                if (this.isWhite()) {
+                    if (spaces_to_move < 2) {
+                        if (x < this.getX() && y < this.getY()) {
+                            piece = board.getPiece(this.getX() - spaces_to_move, this.getY() - spaces_to_move);
+                            if (piece != null && piece.isWhite()) {
+                                return false;
+                            }
+                        }
+                        if (x > this.getX() && y < this.getY()) {
+                            piece = board.getPiece(this.getX() + spaces_to_move, this.getY() - spaces_to_move);
+                            if (piece != null && piece.isWhite()) {
+                                return false;
+                            }
+                        }
+                        if (x < this.getX() && y > this.getY()) {
+                            piece = board.getPiece(this.getX() - spaces_to_move, this.getY() + spaces_to_move);
+                            if (piece != null && piece.isWhite()) {
+                                return false;
+                            }
+                        }
+                        if (x > this.getX() && y > this.getY()) {
+                            piece = board.getPiece(this.getX() + spaces_to_move, this.getY() + spaces_to_move);
+                            if (piece != null && piece.isWhite()) {
+                                return false;
+                            }
+                        }
+                    } else return false;
+                } else {
+                    if (spaces_to_move < 2) {
+                        if (x < this.getX() && y < this.getY()) {
+                            piece = board.getPiece(this.getX() - spaces_to_move, this.getY() - spaces_to_move);
+                            if (piece != null && piece.isBlack()) {
+                                return false;
+                            }
+                        }
+                        if (x > this.getX() && y < this.getY()) {
+                            piece = board.getPiece(this.getX() + spaces_to_move, this.getY() - spaces_to_move);
+                            if (piece != null && piece.isBlack()) {
+                                return false;
+                            }
+                        }
 
-                }
-                if (x > this.getX() && y > this.getY()) {
-                    piece = board.getPiece(this.getX() + spaces_to_move, this.getY() + spaces_to_move);
-                    if (piece != null) {
-                        return false;
-                    }
-
+                        if (x < this.getX() && y > this.getY()) {
+                            piece = board.getPiece(this.getX() - spaces_to_move, this.getY() + spaces_to_move);
+                            if (piece != null && piece.isBlack()) {
+                                return false;
+                            }
+                        }
+                        if (x > this.getX() && y > this.getY()) {
+                            piece = board.getPiece(this.getX() + spaces_to_move, this.getY() + spaces_to_move);
+                            if (piece != null && piece.isBlack()) {
+                                return false;
+                            }
+                        }
+                    } else return false;
                 }
                 break;
         }
-
-
         return true;
     }
 
     @Override
     public boolean moveTo(int x, int y) {
-        if (canMove(x, y)) {
+        if (canMove(x, y) && !isCheckMate()) {
             this.setX(x);
             this.setY(y);
             return true;
+        } else {
+            System.out.println("CHECKMATE WHERE YOU GONNA MOVE NOW?");
+            return false;
+        }
+
+    }
+
+    public boolean isCheckMate() {
+        for (Piece p : this.board.getAllPieces()) {
+            if (p instanceof Rook) {
+                if (p.isWhite() && this.isBlack()) {
+                    if (p.canMove(this.getX(), this.getY())) {
+                        System.out.println("Reached the white check for the rook!");
+                        return true;
+                    }
+                    else return false;
+                } else {
+                    if (p.canMove(this.getX(), this.getY())) {
+                        System.out.println("Reached the black check for the rook!");
+                        return true;
+                    } else return false;
+                }
+            } else if (p instanceof Pawn) {
+                if (p.isWhite()) {
+                    if (p.canMove(this.getX(), this.getY())) return true;
+                    else return false;
+                } else {
+                    if (p.canMove(this.getX(), this.getY())) return true;
+                    else return false;
+                }
+            }
         }
         return false;
     }
-
-
 }
