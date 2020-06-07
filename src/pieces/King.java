@@ -189,27 +189,45 @@ public class King extends Piece {
                 }
                 break;
         }
-        return true;
+        if (isSlayable(x,y)){
+            return false;
+        } else {
+            return true;
+        }
+
+    }
+
+    private boolean isSlayable(int x, int y) {
+        for (Piece p : this.board.getAllPieces()) {
+            if (this.isWhite && p.isBlack()) {
+                if (p.canMove(x, y)) {
+                    return true;
+                }
+            }
+            if (this.isBlack() && p.isWhite) {
+                if (p.canMove(x, y)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     @Override
     public boolean moveTo(int x, int y) {
-        if (canMove(x, y) && !isCheckMate()) {
+        if (canMove(x, y) && !this.isCheckMate()) {
             this.setX(x);
             this.setY(y);
             return true;
-        } else {
+        }  else {
             System.out.println("CHECKMATE WHERE YOU GONNA MOVE NOW?");
             return false;
         }
 
     }
 
-
     public boolean isCheck(){
-
         for(Piece p : this.board.getAllPieces()){
-
             if(this.isWhite && p.isBlack()){
                 if(p.canMove(this.x, this.y)){
                     return true;
@@ -220,24 +238,12 @@ public class King extends Piece {
                     return true;
                 }
             }
-
         }
         return false;
     }
 
     public boolean isCheckMate() {
-
-//        if(){
-//
-//        }
-
-
-
         for (Piece p : this.board.getAllPieces()) {
-
-
-
-
 
         }
         return false;
