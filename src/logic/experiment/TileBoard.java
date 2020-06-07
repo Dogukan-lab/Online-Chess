@@ -1,5 +1,6 @@
 package logic.experiment;
 
+import data.Data;
 import org.jfree.fx.FXGraphics2D;
 import pieces.*;
 
@@ -7,6 +8,7 @@ import java.awt.*;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.Serializable;
+import java.nio.Buffer;
 import java.util.ArrayList;
 
 public class TileBoard implements Serializable {
@@ -14,7 +16,7 @@ public class TileBoard implements Serializable {
     private Rectangle2D outline;
     private Tile[][] tiles;
     private ArrayList<Piece> allPieces;
-     transient private ArrayList<BufferedImage> imagesPieces;
+    transient private ArrayList<BufferedImage> imagesPieces;
     private int positioning = 100;
     private float thickness = 5;
 
@@ -23,6 +25,7 @@ public class TileBoard implements Serializable {
         this.imagesPieces = images;
         this.tiles = new Tile[8][8];
         makeBoard();
+
 
         this.allPieces = new ArrayList<>();
         fillBoard();
@@ -63,148 +66,213 @@ public class TileBoard implements Serializable {
 
     public void fillBoard(){
 
-        Piece rook1Black = new Rook(0,0, false, this.imagesPieces.get(10), this);
-        tiles[0][0].setPiece(rook1Black);
+        if(this.imagesPieces.size() > 0){
+            Piece rook1Black = new Rook(0,0, false, imagesPieces.get(10), this);
+            tiles[0][0].setPiece(rook1Black);
 
-        Piece knight1Black = new Knight(1,0, false, this.imagesPieces.get(9), this);
-        tiles[1][0].setPiece(knight1Black);
+            Piece knight1Black = new Knight(1,0, false, imagesPieces.get(9), this);
+            tiles[1][0].setPiece(knight1Black);
 
-        Piece bishop1Black = new Bishop(2, 0, false, this.imagesPieces.get(8), this);
-        tiles[2][0].setPiece(bishop1Black);
+            Piece bishop1Black = new Bishop(2, 0, false, imagesPieces.get(8), this);
+            tiles[2][0].setPiece(bishop1Black);
 
-        Piece kingBlack = new King(3, 0, false, this.imagesPieces.get(6), this);
-        tiles[3][0].setPiece(kingBlack);
+            Piece kingBlack = new King(3, 0, false, imagesPieces.get(6), this);
+            tiles[3][0].setPiece(kingBlack);
 
-        Piece queenBlack = new Queen(4, 0, false, this.imagesPieces.get(7), this);
-        tiles[4][0].setPiece(queenBlack);
+            Piece queenBlack = new Queen(4, 0, false, imagesPieces.get(7), this);
+            tiles[4][0].setPiece(queenBlack);
 
-        Piece bischop2Black = new Bishop(5, 0, false, this.imagesPieces.get(8), this);
-        tiles[5][0].setPiece(bischop2Black);
+            Piece bischop2Black = new Bishop(5, 0, false, imagesPieces.get(8), this);
+            tiles[5][0].setPiece(bischop2Black);
 
-        Piece knight2Black = new Knight(6,0, false, this.imagesPieces.get(9), this);
-        tiles[6][0].setPiece(knight2Black);
+            Piece knight2Black = new Knight(6,0, false, imagesPieces.get(9), this);
+            tiles[6][0].setPiece(knight2Black);
 
-        Piece rook2Black = new Rook(7,0, false, this.imagesPieces.get(10), this);
-        tiles[7][0].setPiece(rook2Black);
-
-
-        Piece pawn1 = new Pawn(0,1, false, this.imagesPieces.get(11), this);
-        tiles[0][1].setPiece(pawn1);
-
-        Piece pawn2 = new Pawn(1,1, false, this.imagesPieces.get(11), this);
-        tiles[1][1].setPiece(pawn2);
-
-        Piece pawn3 = new Pawn(2,1, false, this.imagesPieces.get(11), this);
-        tiles[2][1].setPiece(pawn3);
-
-        Piece pawn4 = new Pawn(3,1, false, this.imagesPieces.get(11), this);
-        tiles[3][1].setPiece(pawn4);
-
-        Piece pawn5 = new Pawn(4,1, false, this.imagesPieces.get(11), this);
-        tiles[4][1].setPiece(pawn5);
-
-        Piece pawn6 = new Pawn(5,1, false, this.imagesPieces.get(11), this);
-        tiles[5][1].setPiece(pawn6);
-
-        Piece pawn7 = new Pawn(6,1, false, this.imagesPieces.get(11), this);
-        tiles[6][1].setPiece(pawn7);
-
-        Piece pawn8 = new Pawn(7,1, false, this.imagesPieces.get(11), this);
-        tiles[7][1].setPiece(pawn8);
-
-        this.allPieces.add(rook1Black);
-        this.allPieces.add(rook2Black);
-        this.allPieces.add(knight1Black);
-        this.allPieces.add(knight2Black);
-        this.allPieces.add(bishop1Black);
-        this.allPieces.add(bischop2Black);
-        this.allPieces.add(kingBlack);
-        this.allPieces.add(queenBlack);
-        this.allPieces.add(pawn1);
-        this.allPieces.add(pawn2);
-        this.allPieces.add(pawn3);
-        this.allPieces.add(pawn4);
-        this.allPieces.add(pawn5);
-        this.allPieces.add(pawn6);
-        this.allPieces.add(pawn7);
-        this.allPieces.add(pawn8);
+            Piece rook2Black = new Rook(7,0, false, imagesPieces.get(10), this);
+            tiles[7][0].setPiece(rook2Black);
 
 
+            Piece pawn1 = new Pawn(0,1, false, imagesPieces.get(11), this);
+            tiles[0][1].setPiece(pawn1);
+
+            Piece pawn2 = new Pawn(1,1, false, imagesPieces.get(11), this);
+            tiles[1][1].setPiece(pawn2);
+
+            Piece pawn3 = new Pawn(2,1, false, imagesPieces.get(11), this);
+            tiles[2][1].setPiece(pawn3);
+
+            Piece pawn4 = new Pawn(3,1, false, imagesPieces.get(11), this);
+            tiles[3][1].setPiece(pawn4);
+
+            Piece pawn5 = new Pawn(4,1, false, imagesPieces.get(11), this);
+            tiles[4][1].setPiece(pawn5);
+
+            Piece pawn6 = new Pawn(5,1, false, imagesPieces.get(11), this);
+            tiles[5][1].setPiece(pawn6);
+
+            Piece pawn7 = new Pawn(6,1, false, imagesPieces.get(11), this);
+            tiles[6][1].setPiece(pawn7);
+
+            Piece pawn8 = new Pawn(7,1, false, imagesPieces.get(11), this);
+            tiles[7][1].setPiece(pawn8);
+
+            this.allPieces.add(rook1Black);
+            this.allPieces.add(rook2Black);
+            this.allPieces.add(knight1Black);
+            this.allPieces.add(knight2Black);
+            this.allPieces.add(bishop1Black);
+            this.allPieces.add(bischop2Black);
+            this.allPieces.add(kingBlack);
+            this.allPieces.add(queenBlack);
+            this.allPieces.add(pawn1);
+            this.allPieces.add(pawn2);
+            this.allPieces.add(pawn3);
+            this.allPieces.add(pawn4);
+            this.allPieces.add(pawn5);
+            this.allPieces.add(pawn6);
+            this.allPieces.add(pawn7);
+            this.allPieces.add(pawn8);
 
 
-        Piece rook1White = new Rook(0,7, true, this.imagesPieces.get(4), this);
-        tiles[0][7].setPiece(rook1White);
-
-        Piece knight1White = new Knight(1,7, true, this.imagesPieces.get(3), this);
-        tiles[1][7].setPiece(knight1White);
-
-        Piece bischop1White = new Bishop(2, 7, true, this.imagesPieces.get(2), this);
-        tiles[2][7].setPiece(bischop1White);
-
-        Piece kingWhite = new King(3, 7, true, this.imagesPieces.get(0), this);
-        tiles[3][7].setPiece(kingWhite);
-
-        Piece queenWhite = new Queen(4, 7, true, this.imagesPieces.get(1), this);
-        tiles[4][7].setPiece(queenWhite);
-
-        Piece bischop2White = new Bishop(5, 7, true, this.imagesPieces.get(2), this);
-        tiles[5][7].setPiece(bischop2White);
-
-        Piece knight2White = new Knight(6,7, true, this.imagesPieces.get(3), this);
-        tiles[6][7].setPiece(knight2White);
-
-        Piece rook2White = new Rook(7,7, true, this.imagesPieces.get(4), this);
-        tiles[7][7].setPiece(rook2White);
 
 
-        Piece pawnW1 = new Pawn(0,6, true, this.imagesPieces.get(5), this);
-        tiles[0][6].setPiece(pawnW1);
+            Piece rook1White = new Rook(0,7, true, imagesPieces.get(4), this);
+            tiles[0][7].setPiece(rook1White);
 
-        Piece pawnW2 = new Pawn(1,6, true, this.imagesPieces.get(5), this);
-        tiles[1][6].setPiece(pawnW2);
+            Piece knight1White = new Knight(1,7, true, imagesPieces.get(3), this);
+            tiles[1][7].setPiece(knight1White);
 
-        Piece pawnW3 = new Pawn(2,6, true, this.imagesPieces.get(5), this);
-        tiles[2][6].setPiece(pawnW3);
+            Piece bischop1White = new Bishop(2, 7, true, imagesPieces.get(2), this);
+            tiles[2][7].setPiece(bischop1White);
 
-        Piece pawnW4 = new Pawn(3,6, true, this.imagesPieces.get(5), this);
-        tiles[3][6].setPiece(pawnW4);
+            Piece kingWhite = new King(3, 7, true, imagesPieces.get(0), this);
+            tiles[3][7].setPiece(kingWhite);
 
-        Piece pawnW5 = new Pawn(4,6, true, this.imagesPieces.get(5), this);
-        tiles[4][6].setPiece(pawnW5);
+            Piece queenWhite = new Queen(4, 7, true, imagesPieces.get(1), this);
+            tiles[4][7].setPiece(queenWhite);
 
-        Piece pawnW6 = new Pawn(5,6, true, this.imagesPieces.get(5), this);
-        tiles[5][6].setPiece(pawnW6);
+            Piece bischop2White = new Bishop(5, 7, true, imagesPieces.get(2), this);
+            tiles[5][7].setPiece(bischop2White);
 
-        Piece pawnW7 = new Pawn(6,6, true, this.imagesPieces.get(5), this);
-        tiles[6][6].setPiece(pawnW7);
+            Piece knight2White = new Knight(6,7, true, imagesPieces.get(3), this);
+            tiles[6][7].setPiece(knight2White);
 
-        Piece pawnW8 = new Pawn(7,6, true, this.imagesPieces.get(5), this);
-        tiles[7][6].setPiece(pawnW8);
+            Piece rook2White = new Rook(7,7, true, imagesPieces.get(4), this);
+            tiles[7][7].setPiece(rook2White);
 
 
-        this.allPieces.add(rook1White);
-        this.allPieces.add(rook2White);
-        this.allPieces.add(knight1White);
-        this.allPieces.add(knight2White);
-        this.allPieces.add(bischop1White);
-        this.allPieces.add(bischop2White);
-        this.allPieces.add(kingWhite);
-        this.allPieces.add(queenWhite);
-        this.allPieces.add(pawnW1);
-        this.allPieces.add(pawnW2);
-        this.allPieces.add(pawnW3);
-        this.allPieces.add(pawnW4);
-        this.allPieces.add(pawnW5);
-        this.allPieces.add(pawnW6);
-        this.allPieces.add(pawnW7);
-        this.allPieces.add(pawnW8);
+            Piece pawnW1 = new Pawn(0,6, true, imagesPieces.get(5), this);
+            tiles[0][6].setPiece(pawnW1);
 
+            Piece pawnW2 = new Pawn(1,6, true, imagesPieces.get(5), this);
+            tiles[1][6].setPiece(pawnW2);
+
+            Piece pawnW3 = new Pawn(2,6, true, imagesPieces.get(5), this);
+            tiles[2][6].setPiece(pawnW3);
+
+            Piece pawnW4 = new Pawn(3,6, true, imagesPieces.get(5), this);
+            tiles[3][6].setPiece(pawnW4);
+
+            Piece pawnW5 = new Pawn(4,6, true, imagesPieces.get(5), this);
+            tiles[4][6].setPiece(pawnW5);
+
+            Piece pawnW6 = new Pawn(5,6, true, imagesPieces.get(5), this);
+            tiles[5][6].setPiece(pawnW6);
+
+            Piece pawnW7 = new Pawn(6,6, true, imagesPieces.get(5), this);
+            tiles[6][6].setPiece(pawnW7);
+
+            Piece pawnW8 = new Pawn(7,6, true, imagesPieces.get(5), this);
+            tiles[7][6].setPiece(pawnW8);
+
+
+            this.allPieces.add(rook1White);
+            this.allPieces.add(rook2White);
+            this.allPieces.add(knight1White);
+            this.allPieces.add(knight2White);
+            this.allPieces.add(bischop1White);
+            this.allPieces.add(bischop2White);
+            this.allPieces.add(kingWhite);
+            this.allPieces.add(queenWhite);
+            this.allPieces.add(pawnW1);
+            this.allPieces.add(pawnW2);
+            this.allPieces.add(pawnW3);
+            this.allPieces.add(pawnW4);
+            this.allPieces.add(pawnW5);
+            this.allPieces.add(pawnW6);
+            this.allPieces.add(pawnW7);
+            this.allPieces.add(pawnW8);
+
+        }
 
 //        for(int yC = 0; yC < 8; yC++){
 //            for(int xC = 0; xC < 8; xC++){
 //                System.out.println(tiles[xC][yC].toString());
 //            }
 //        }
+    }
+
+    public void update(double deltaTime){
+
+        if(this.imagesPieces.size() > 0){
+            for(Piece p : this.allPieces){
+
+                if(p instanceof Pawn){
+                    if(p.isWhite()){
+                        p.setImage(this.imagesPieces.get(5));
+                    }
+                    else {
+                        p.setImage(this.imagesPieces.get(11));
+                    }
+
+                }
+                else if(p instanceof Rook){
+                    if(p.isWhite()){
+                        p.setImage(this.imagesPieces.get(4));
+                    }
+                    else {
+                        p.setImage(this.imagesPieces.get(10));
+                    }
+
+                }
+                else if(p instanceof Bishop){
+                    if(p.isWhite()){
+                        p.setImage(this.imagesPieces.get(2));
+                    }
+                    else {
+                        p.setImage(this.imagesPieces.get(8));
+                    }
+
+                }
+                else if(p instanceof King){
+                    if(p.isWhite()){
+                        p.setImage(this.imagesPieces.get(0));
+                    }
+                    else {
+                        p.setImage(this.imagesPieces.get(6));
+                    }
+
+                }
+                else if(p instanceof Knight){
+                    if(p.isWhite()){
+                        p.setImage(this.imagesPieces.get(3));
+                    }
+                    else {
+                        p.setImage(this.imagesPieces.get(9));
+                    }
+
+                }
+                else if(p instanceof Queen){
+                    if(p.isWhite()){
+                        p.setImage(this.imagesPieces.get(1));
+                    }
+                    else {
+                        p.setImage(this.imagesPieces.get(7));
+                    }
+
+                }
+            }
+        }
     }
 
     public Piece getPiece(int x, int y) {
@@ -248,5 +316,9 @@ public class TileBoard implements Serializable {
 
     synchronized public ArrayList<Piece> getAllPieces() {
         return allPieces;
+    }
+
+    public void setImagesPieces(ArrayList<BufferedImage> imagesPieces) {
+        this.imagesPieces = imagesPieces;
     }
 }

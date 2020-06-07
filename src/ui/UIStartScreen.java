@@ -33,8 +33,8 @@ public class UIStartScreen {
             e.printStackTrace();
         }
 
-        UIbutton createLobby = new UIbutton("Create Lobby", 0, 0, 1, 0, canvas.getWidth(), canvas.getHeight() / 2, 200, 100, Color.black);
-        UIbutton joinLobby = new UIbutton("Join Lobby", 0, 0, 1, 0, canvas.getWidth(), canvas.getHeight() + 50, 200, 100, Color.black);
+        UIbutton createLobby = new UIbutton("Join as white side", 0, 0, 1, 0, canvas.getWidth(), canvas.getHeight() / 2, 200, 100, Color.black);
+        UIbutton joinLobby = new UIbutton("Join as black side", 0, 0, 1, 0, canvas.getWidth(), canvas.getHeight() + 50, 200, 100, Color.black);
         this.buttons.add(createLobby);
         this.buttons.add(joinLobby);
 
@@ -49,29 +49,26 @@ public class UIStartScreen {
 //                    }
 //                }
                 if (button.getRectangle().contains(mosX, mosY)) {
-                    if (button.getTitleName().equals("Create Lobby")) {
+                    if (button.getTitleName().equals("Join as white side")) {
                         UIManager.toMap = true;
 
                         Thread threadClientPlayerOne = new Thread( () ->{
-                            Client clientPlayerOne = new Client("localhost", 24224);
+                            Client clientPlayerOne = new Client("localhost", 24224, true);
                             data.setClient(clientPlayerOne);
-                            clientPlayerOne.connectObject();
+                            clientPlayerOne.connectAndPlayObject();
 
                         });
 
                         threadClientPlayerOne.start();
 
-                        data.setPlayerOneTurn(true);
-
                     }
-                    if(button.getTitleName().equals("Join Lobby")){
+                    if(button.getTitleName().equals("Join as black side")){
                         UIManager.toMap = true;
                         Thread threadClientPlayerTwo = new Thread( () ->{
-                            Client clientPlayerTwo = new Client("localhost", 24224);
-                            clientPlayerTwo.connectObject();
+                            Client clientPlayerTwo = new Client("localhost", 24224, false);
+                            clientPlayerTwo.connectAndPlayObject();
                         });
                         threadClientPlayerTwo.start();
-                        data.setPlayerTwoTurn(false);
                     }
                 }
             }
@@ -93,10 +90,10 @@ public class UIStartScreen {
     public void update(double deltaTime) {
         for (UIbutton button : this.buttons) {
             button.update(deltaTime);
-            if (button.getTitleName().equals("Create Lobby")) {
+            if (button.getTitleName().equals("Join as white side")) {
                 button.setPosition(this.canvas.getWidth() / 2, this.canvas.getHeight() / 2);
             }
-            if (button.getTitleName().equals("Join Lobby")) {
+            if (button.getTitleName().equals("Join as black side")) {
                 button.setPosition(this.canvas.getWidth() / 2, this.canvas.getHeight() / 2 + 150);
             }
         }

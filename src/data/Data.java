@@ -1,9 +1,11 @@
 package data;
 
 import logic.Client;
+import logic.Player;
 import logic.SpriteSheetReader;
 import logic.experiment.TileBoard;
 
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 public class Data {
@@ -18,20 +20,26 @@ public class Data {
     }
 
     private boolean startGame;
-    private boolean playerOneTurn;
-    private boolean playerTwoTurn;
+
 
     private TileBoard tileBoard;
     private Client client;
+    private Player player;
+    private ArrayList<BufferedImage> imagesPieces;
+
+    private String turnText;
+    private String status;
+
 
 
     private Data() {
         startGame = false;
-        playerOneTurn = true;
-        playerTwoTurn = false;
 
-        SpriteSheetReader spriteReader = new SpriteSheetReader("resources/sprite-sheet-pieces.png");
-        this.tileBoard = new TileBoard(spriteReader.getImages());
+//        this.imagesPieces = ;
+
+        SpriteSheetReader reader = new SpriteSheetReader("resources/sprite-sheet-pieces.png");
+
+        this.tileBoard = new TileBoard(reader.getImages());
     }
 
 
@@ -43,24 +51,8 @@ public class Data {
         this.startGame = startGame;
     }
 
-    public boolean isPlayerOneTurn() {
-        return playerOneTurn;
-    }
 
-    public void setPlayerOneTurn(boolean playerOneTurn) {
-        this.playerOneTurn = playerOneTurn;
-    }
-
-    public boolean isPlayerTwoTurn() {
-        return playerTwoTurn;
-    }
-
-    public void setPlayerTwoTurn(boolean playerTwoTurn) {
-        this.playerTwoTurn = playerTwoTurn;
-    }
-
-
-    public TileBoard getTileBoard() {
+    synchronized public TileBoard getTileBoard() {
         return tileBoard;
     }
 
@@ -78,5 +70,42 @@ public class Data {
 
     public Client getClient() {
         return client;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    public ArrayList<BufferedImage> getImagesPieces() {
+        return imagesPieces;
+    }
+
+    public String getTurnText() {
+        return turnText;
+    }
+
+    public void setTurnText(String turnText) {
+        this.turnText = turnText;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getColorAsText(){
+        if(this.player.isWhite()){
+            return "white";
+        }
+        else {
+            return "black";
+        }
     }
 }

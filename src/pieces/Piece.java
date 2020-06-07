@@ -66,4 +66,8 @@ public abstract class Piece implements Serializable {
                 ", y= " + y +
                 '}';
     }
+
+    public void setImage(BufferedImage image) {
+        this.image = image;
+    }
 }
