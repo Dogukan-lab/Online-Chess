@@ -93,9 +93,6 @@ public class UIManager extends Application {
 //                System.out.println(canvas.getHeight());
 //            }
 //        }
-
-
-
     }
 
 
@@ -111,100 +108,4 @@ public class UIManager extends Application {
         }
 
     }
-
-
-
-    /**
-    private Piece piece = null;
-
-    public void mousePressed(MouseEvent e) {
-        switchedBlock = true;
-//        for (Piece p : this.board.getWhitePieces()) {
-//            if (e.getX() < p.getImage().getWidth() + p.getImage().getMinX() && e.getX() > p.getImage().getMinX() && e.getY() < p.getImage().getHeight() + p.getImage().getMinY() && e.getY() > p.getImage().getMinY()) {
-//                piece = p;
-//
-//                System.out.println("CLICKED");
-//                return;
-//            }
-//
-//        }
-
-        for (int y = 0; y < 8; y++) {
-            for (int x = 0; x < 8; x++) {
-                Tile t = this.board.getTiles()[x][y];
-                Piece p = this.board.getTiles()[x][y].getPiece();
-                System.out.println(t.toString());
-                if (p != null) {
-                    if (t.getRectangle().contains(e.getX(), e.getY())) {
-                        piece = p;
-                        System.out.println("CLICKED ON A BLACK PIECE: " + piece.isBlack());
-                        return;
-                    }
-                }
-            }
-        }
-
-    }
-
-    public void mouseReleased(MouseEvent e) {
-
-        piece = null;
-        switchedBlock = false;
-
-    }
-
-    private void mouseDragged(MouseEvent e) {
-
-
-
-        if (piece != null) {
-
-            //only calculate the offset on grabbing a new block
-            if (switchedBlock) {
-                System.out.println("IK KOM IN DE IF STATEMENT");
-                //calculate the offset of the mouse position relative to the block position
-                offsetx = e.getX() - piece.getX();
-                offsety = e.getY() - piece.getY();
-                switchedBlock = false;
-            }
-
-            //get the translate position
-             Point2D translatePos = new Point2D.Double((e.getX() - offsetx), (e.getY() - offsety));
-//            piece.setX((int)translatePos.getX()/320);
-//            piece.setY((int) translatePos.getY()/320);
-
-            //move the block to the desired position
-//            piece.moveTo((int) translatePos.getX()/320, (int) translatePos.getY()/320);
-            piece.moveTo((int) translatePos.getX()/320, (int) translatePos.getY()/320);
-
-            //draw the canvas again
-//            draw(new FXGraphics2D(canvas.getGraphicsContext2D()));
-
-            //draw the block again
-//            piece.draw(new FXGraphics2D(canvas.getGraphicsContext2D()));
-        }
-    }
-
-
-
-    public void mouseClicked(MouseEvent e){
-
-        double mouseX = e.getX();
-        double mouseY = e.getY();
-        if(!selectedAPiece){
-            Piece piece = null;
-
-            for(int y = 0; y < 8; y++){
-                for (int x = 0; x < 8; x++) {
-                    Tile t = this.board.getTiles()[x][y];
-                    if(mouseX > t.getRectangle().getMinX() && mouseX < t.getRectangle().getMaxX() && mouseY > t.getRectangle().getMinY() && mouseY < t.getRectangle().getMaxY()){
-                        piece = t.getPiece();
-                    }
-                }
-            }
-        }
-
-    }
-
-**/
 }
