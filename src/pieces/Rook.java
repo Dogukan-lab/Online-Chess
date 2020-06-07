@@ -24,7 +24,7 @@ public class Rook extends Piece {
             }
         }
 
-        if (this.getX() != x && this.getY() != y) {
+        if (Math.abs(x -this.getX()) == Math.abs(y - this.getY())) {
             return false;
         }
 
@@ -84,13 +84,9 @@ public class Rook extends Piece {
 
     @Override
     public boolean moveTo(int x, int y) {
-        System.out.println("CHECKING FOR MOVEMENT HERE!!!");
-        System.out.println(x);
-        System.out.println(y);;
         if(canMove(x,y)){
-            System.out.println("LETS MOVE !");
-            super.setX(x);
-            super.setY(y);
+            this.setX(x);
+            this.setY(y);
             return true;
         }
         return false;

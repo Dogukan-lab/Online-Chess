@@ -35,8 +35,6 @@ public class UIGameScreen {
 
     }
 
-
-
     public void update(double deltaTime){
         if(this.switchedToGame){
             this.canvas.setOnMouseClicked(this::mousePressed);
@@ -62,8 +60,6 @@ public class UIGameScreen {
         graphics.drawString("Your color/side: " + data.getColorAsText(), 1000, 100);
         graphics.drawString("King status: " + data.getStatus(), 1000, 200);
     }
-
-
 
     private void mousePressed(MouseEvent e) {
         if(data.getPlayer().isTurn()){
@@ -154,5 +150,4 @@ public class UIGameScreen {
 
 
     }
-
 }

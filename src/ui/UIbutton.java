@@ -25,15 +25,11 @@ public class UIbutton {
 
 
     public UIbutton(String titleName, double translateX, double translateY, double scale, double rotation, double positionX, double positionY, double width, double height, Color color) {
-
-
         this.titleName = titleName;
         this.translateX = translateX;
         this.translateY = translateY;
-
         this.scale = scale;
         this.rotation = rotation;
-
         this.position = new Point2D.Double(width, height);
 
         this.rectangle = new Rectangle2D.Double(this.position.getX(), this.position.getY(), width, height);

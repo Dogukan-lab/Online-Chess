@@ -34,7 +34,9 @@ public class Tile implements Serializable {
         this.piece = piece;
     }
 
-
+    public Color getColor() {
+        return color;
+    }
 
     public void draw(FXGraphics2D graphics){
         graphics.setColor(this.color);
